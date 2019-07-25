@@ -1,6 +1,7 @@
 <template>
 	<v-app>
 		<Toolbar />
+		
 		<Drawer />
 	</v-app>
 </template>

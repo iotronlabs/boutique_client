@@ -10,15 +10,15 @@
 				<Login />
 			</center>
 			<hr>
-			<v-list-tile
+			<v-list
 				v-for="(item, i) in items"
 				:key="i"
 				:to="item.to"
 				:href="item.href"
 				@click="onClick($event, item)"
 			>
-				<v-list-tile-title v-text="item.text" />
-			</v-list-tile>
+				<v-list-title v-text="item.text" />
+			</v-list>
 		</v-list>
   	</v-navigation-drawer>
 </template>
