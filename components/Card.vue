@@ -1,15 +1,14 @@
 <template>
   <v-card
-    class="mx-auto "
-    max-width="250"
-    max-height="300"
+    class="mx-auto category-card"
+    max-height="500"
     outline
     raised
     exact
     to='/'
 
   >
-     <v-img
+     <!-- <v-img
          class="white--text hidden-md-and-up "
          max-width="150"
          max-height="300"
@@ -20,11 +19,11 @@
             <div>{{title}}</div> <v-spacer></v-spacer>
             <span>{{desp}}</span>
         </v-card-title>
-      </v-img>
+      </v-img> -->
     
 
 
-    <div class="hidden-sm-and-down">
+    <div >
     <v-img
        class="mx-auto"
        max-height="300"
@@ -61,3 +60,6 @@ export default {
     } 
 }
 </script>
+
+
+
