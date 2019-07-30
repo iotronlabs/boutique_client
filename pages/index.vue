@@ -1,6 +1,8 @@
 <template>
 <v-app>
   <br><br>
+  <Slider/>
+  <br><br><br>
   &nbsp; <v-divider></v-divider><br>
   <div class="black--text text-center display-1 font-weight-medium">
      SHOP BY CATEGORY
@@ -23,9 +25,10 @@
 
 <script>
 import Card from '@/components/card'
+import Slider from '@/components/Slider'
 export default {
   components:{
-    Card
+    Card,Slider
   },
   data(){
     return{
