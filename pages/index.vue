@@ -5,7 +5,7 @@
   <br><br><br>
   &nbsp; <v-divider></v-divider><br>
   <div class="black--text text-center display-1 font-weight-medium">
-     SHOP BY CATEGORY
+     Shop By Category
   </div>
 
   <br><br><br>
@@ -19,6 +19,64 @@
      
     </v-layout>
    <v-divider></v-divider>
+
+   <br><br><br>
+  &nbsp; <v-divider></v-divider><br>
+  <div class="black--text text-center display-1 font-weight-medium">
+     New Arrivals
+  </div>
+
+  <br><br><br>
+   <v-layout row wrap>
+     
+      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
+        <v-container>
+          <Card/>
+        </v-container>
+      </v-flex>
+     
+    </v-layout>
+   <v-divider></v-divider>
+
+     <br><br><br>
+  &nbsp; <v-divider></v-divider><br>
+  <div class="black--text text-center display-1 font-weight-medium">
+     Top Products
+  </div>
+
+  <br><br><br>
+   <v-layout row wrap>
+     
+      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
+        <v-container>
+          <Card/>
+        </v-container>
+      </v-flex>
+     
+    </v-layout>
+   <v-divider></v-divider>
+       <br><br><br>
+  &nbsp; <v-divider></v-divider><br>
+  <div class="black--text text-center display-1 font-weight-medium">
+    Best offers
+  </div>
+
+  <br><br><br>
+   <v-layout row wrap>
+     
+      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
+        <v-container>
+          <Card/>
+        </v-container>
+      </v-flex>
+     
+    </v-layout>
+   <v-divider></v-divider>
+   <pre>
+
+
+
+   </pre>
  </v-app>
 </template>
 

@@ -4,10 +4,40 @@
     dark
     height="auto"
   >
-    <v-container mx-auto>
-      <v-layout wrap>
-        <v-flex xs9>
-          <base-btn
+    <v-container mx-auto >
+      <v-divider vertical light inset></v-divider>
+  
+      <v-layout >
+        <div>
+         BUTIQ 
+        </div>
+        <v-spacer/>
+      <div> 
+       
+       COMPANY<br>
+
+       <a href="#"> About Us</a><br>
+       <a href="#">  Contact Us</a><br>
+       <a href="#"> Privacy Policy</a><br><br>
+       </div>
+       <v-spacer/>
+        <div>
+         <pre>
+         ADDRESS:
+         5th Floor, A-118,
+         Sector-136, Noida
+         </pre>
+        </div>
+       <br>
+     
+      
+
+      </v-layout>
+     
+      <v-spacer />
+      <v-layout  col wrap>
+        <v-flex xs9 sm 6 md4 lg4>
+            <base-btn
             v-for="(item, i) in items"
             :key="i"
             :href="item.href"
@@ -15,6 +45,8 @@
             color="primary"
             square
             target="_blank"
+           
+            
           >
             <v-icon v-text="item.icon" />
           </base-btn>
@@ -53,14 +85,7 @@
           href: '#!',
           icon: 'mdi-google-plus'
         },
-        {
-          href: '#!',
-          icon: 'mdi-reddit'
-        },
-        {
-          href: '#!',
-          icon: 'mdi-discord'
-        },
+       
         {
           href: '#!',
           icon: 'mdi-pinterest'

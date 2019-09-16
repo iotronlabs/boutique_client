@@ -19,7 +19,7 @@
 				<v-flex xs0 sm0 md9 class="hidden-sm-and-down">
 					<v-text-field
 						append-icon="mdi-magnify"
-						flat
+						text
 						hide-details
 						solo-inverted
 						class="navbar-search"
