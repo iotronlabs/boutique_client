@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-sheet
-      class="mx-auto"
+      class="mx-auto hidden-md-and-up"
       elevation="2"
     >
       <v-slide-group

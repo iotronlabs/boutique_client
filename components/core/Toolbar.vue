@@ -1,11 +1,11 @@
 <template>
-<div>
+<div class="nav">
   	<v-toolbar app flat class="navbar">
 		<v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"></v-app-bar-nav-icon>
     	<!-- <v-toolbar-side-icon  /> -->
 		<v-container mx-auto py-0 >
 			<v-layout row wrap>
-				<v-flex md1>
+				<v-flex md2>
 				<v-img
 					src="/butiq.png"
 					class="mr-4 navbar-logo"
@@ -16,7 +16,7 @@
 					@click="$vuetify.goTo(0)"
 				/>
 				</v-flex>
-				<v-flex xs0 sm0 md9 class="hidden-sm-and-down">
+				<v-flex xs0 sm0 md6 offset-md1 class="hidden-sm-and-down">
 					<v-text-field
 						append-icon="mdi-magnify"
 						text
@@ -25,7 +25,7 @@
 						class="navbar-search"
 					/>
 				</v-flex>
-				<v-flex md2 xs1 sm1>
+				<v-flex md2 xs1 sm1 offset-md1>
 					<v-btn icon class="navbar-icon-cart" large>cart</v-btn>
 					<!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
 					<span class="hidden-sm-and-down navbar-login"><Login /></span>
@@ -49,7 +49,7 @@
 					{{item.text}}
 				</v-btn>
 			</div>
-			<v-flex xs12 sm12 class="hidden-md-and-up">
+			<v-flex xs10 sm10 offset-xs1 class="hidden-md-and-up">
 				<v-text-field
 					append-icon="mdi-magnify"
 					flat
@@ -87,13 +87,19 @@ export default {
 }
 </script>
 <style scoped>
+.nav
+{
+	position: fixed;
+	z-index: 300;
+	width: 100%;
+}
 .navbar
 {
 	padding-top: 20px;
 }
 .navbar-logo
 {
-	margin-left: 10px;
+	margin-left: 50px;
 	margin-top: -5px;
 }
 .navbar-search 

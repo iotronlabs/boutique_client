@@ -3,6 +3,7 @@
 		v-model="drawer"
 		app
 		temporary
+		class="drawer"
 	>
 		<v-list>
 			<center>
@@ -60,3 +61,10 @@ export default {
     }
   }
 </script>
+
+<style scoped>
+.drawer
+{
+	z-index: 300;
+}
+</style>

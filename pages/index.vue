@@ -1,12 +1,12 @@
 <template>
-<v-app>
-  <br><br>
+<v-app class="content">
+
   <Slider/>
-  <br><br><br>
-  &nbsp; <v-divider></v-divider><br>
-  <div class="black--text text-center display-1 font-weight-medium">
-     Shop By Category
-  </div>
+  
+	 <v-divider class="hidden-md-and-up"></v-divider><br>
+	<div class="black--text text-center display-1 font-weight-medium">
+		Shop By Category
+	</div>
 
   <br><br><br>
    <v-layout row wrap>
@@ -97,7 +97,10 @@ export default {
 }
 </script>
 <style scoped>
-
+.content
+{
+	padding-top: 130px;
+}
 </style>
 
 
