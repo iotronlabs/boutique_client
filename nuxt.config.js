@@ -51,6 +51,13 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'https://api.butiq.co.in/public/api',
+    // baseURL: 'http://localhost:8000',
+    proxyHeaders: false,
+    credentials: false,
+    proxy: false,
+    debug: false,
+    urlencoded: true
   },
   /*
   ** vuetify module configuration

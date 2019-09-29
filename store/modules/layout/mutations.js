@@ -5,5 +5,9 @@ export default {
 	},
     toggleDrawer({}) {
 		state.drawer = !state.drawer
-	}
+	},
+	async setNavMenu() {
+		const response = await this.$axios.get('/categories')
+		console.log(response.data)
+	}	
 }
