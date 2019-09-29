@@ -30,7 +30,7 @@
 					<span class="hidden-sm-and-down mr-2"><Login /></span>
 			
 					<!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
-								<v-btn outlined color="primary" >
+								<v-btn rounded outlined color="primary" >
        Cart<v-icon right>mdi-cart</v-icon>
     </v-btn>
 				</v-col>

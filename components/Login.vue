@@ -1,14 +1,14 @@
 <template>
      <v-dialog v-model="dialog"  max-width="600px">
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">Login</v-btn>
+          <v-btn rounded color="primary" dark v-on="on">Login</v-btn>
         </template>
         <template>
            <v-tabs
               v-model="active"
               color="primary"
-              light
-              slider-color="yellow"
+              
+              slider-color="deepPurple"
               grow
            >
              <v-tab
@@ -20,10 +20,13 @@
 
               </v-tab>
                  <v-tab-item >
-                   <v-card>
-                    <v-card-text>
-                     <div>
+                   <v-container>
+                    
+                     <v-row>
+                       <v-col class="d-flex justify-center">
+                         
 	                     <v-form @submit.prevent="checkLogin" id="login-form"  method="post">
+                         
                         <v-text-field
                         prepend-icon="person"
                         label="Email ID"
@@ -41,8 +44,8 @@
                           v-model="password"
                           :append-icon="show ? 'visibility' : 'visibility_off'"
                           :type="show ? 'text' : 'password'"
-                          name="password"
                           label="Password"
+                          name="password"
                           placeholder=" "
                           hint="At least 8 characters"
                           autocomplete="off"
@@ -51,25 +54,27 @@
                           >
                         </v-text-field>
 
-                         <v-checkbox
-                           v-model="checkbox"
-                           label="Remember Me"
-                         ></v-checkbox>
-                         <div   class="title font-weight-medium text-xs-center">
-                         <v-btn color="success" type="submit" left>LogIn</v-btn>&nbsp;&nbsp;&nbsp;&nbsp;
-                          or
-                         <v-btn color="primary"	type="" >Request OTP</v-btn>
+                       
+                         <div class="d-flex justify-center"> 
+                         <v-btn color="primary" rounded outlined type="submit" left>LogIn</v-btn>
+                        
                          </div>
                          <br><hr><br>
-                         <div  class="title font-weight-thin text-xs-center">login via</div>
+                        <div class="d-flex justify-center">
+                          
+                           <v-btn color="secondary" type="submit" left>Facebook</v-btn>    
+                          OR
+                         <v-btn color="primary">Google</v-btn> 
+                        </div>
 
                       </v-form>
-                    </div>
+                       </v-col>
+                     </v-row>
 
                      <br> <hr><br>
                      <a href="#"  class="  font-weight-light text-xs-center">     New to Butique ? Create an account  </a>
-                    </v-card-text>
-                    </v-card>
+                    
+                    </v-container>
                   </v-tab-item>
                   <v-tab-item>
                     signup page
