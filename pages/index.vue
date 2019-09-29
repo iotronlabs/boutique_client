@@ -97,10 +97,7 @@ export default {
 }
 </script>
 <style scoped>
-.content
-{
-	padding-top: 130px;
-}
+
 </style>
 
 

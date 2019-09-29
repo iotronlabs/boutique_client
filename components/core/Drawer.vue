@@ -5,22 +5,31 @@
 		temporary
 		class="drawer"
 	>
-		<v-list>
-			<center>
+
+		    <v-list shaped>
+				
+		<v-list-item>
+			
 				<!-- <v-btn color="primary" dark>Login</v-btn> -->
 				<Login />
-			</center>
-			<hr>
-			<v-list
-				v-for="(item, i) in items"
-				:key="i"
-				:to="item.to"
-				:href="item.href"
-				@click="onClick($event, item)"
-			>
-				<v-list-title v-text="item.text" />
-			</v-list>
-		</v-list>
+			
+			
+		</v-list-item>
+      <v-subheader>Categories</v-subheader>
+      <v-list-item-group v-model="item" color="primary">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+        >
+          <v-list-item-content>
+            <v-list-item-title v-text="item.text"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+	    <v-list-item>
+          <v-switch v-model="$vuetify.theme.dark" color="primary" label="Dark"></v-switch>
+        </v-list-item>
+    </v-list>
   	</v-navigation-drawer>
 </template>
 
