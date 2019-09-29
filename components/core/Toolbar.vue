@@ -3,34 +3,33 @@
   	<v-toolbar app flat class="navbar">
 		<v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"></v-app-bar-nav-icon>
     	<!-- <v-toolbar-side-icon  /> -->
-		<v-container mx-auto py-0 >
-			<v-layout row wrap>
-				<v-flex md2>
+		<v-container fluid>
+			<v-row no-gutters>
+				<v-col>
 				<v-img
 					src="/butiq.png"
-					class="mr-4 navbar-logo"
 					contain
-					height="70"
-					width="70"
-					max-width="70"
+					height="90"
+					width="90"
+					max-width="90"
 					@click="$vuetify.goTo(0)"
 				/>
-				</v-flex>
-				<v-flex xs0 sm0 md6 offset-md1 class="hidden-sm-and-down">
+				</v-col>
+				<v-col class="d-flex align-center">
 					<v-text-field
 						append-icon="mdi-magnify"
 						text
 						hide-details
 						solo-inverted
-						class="navbar-search"
+						class="hidden-sm-and-down"
 					/>
-				</v-flex>
-				<v-flex md2 xs1 sm1 offset-md1>
+				</v-col>
+				<v-col class="d-flex flex-row-reverse align-center">
 					<v-btn icon class="navbar-icon-cart" large>cart</v-btn>
 					<!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
 					<span class="hidden-sm-and-down navbar-login"><Login /></span>
-				</v-flex>
-			</v-layout>
+				</v-col>
+			</v-row>
 			
 		</v-container>
   	</v-toolbar>
