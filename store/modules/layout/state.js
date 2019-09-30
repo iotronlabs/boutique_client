@@ -2,11 +2,11 @@ const drawer = false
 const items= [
 	{
 		text: 'Men',
-		to: '/'
+		to: '/Men'
 	},
 	{
 		text: 'Women',
-		to: '/'
+		to: '/Women'
 	},
 	{
 		text: 'Accessories',
