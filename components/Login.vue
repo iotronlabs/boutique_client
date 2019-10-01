@@ -56,16 +56,21 @@
 
                        
                          <div class="d-flex justify-center"> 
-                         <v-btn color="primary" rounded outlined type="submit" left>LogIn</v-btn>
+                         <v-btn color="primary" rounded outlined type="submit" class="mt-4">LogIn</v-btn>
                          </div>
 
                          <br><hr><br>
 
                         <div class="d-flex justify-center">
+
                           
-                          <v-btn color="blue" class="white--text" type="submit" left><font-awesome-icon :icon="['fab', 'facebook']"/>&nbsp;&nbsp;Facebook</v-btn>    
-                         &nbsp;&nbsp; OR &nbsp;&nbsp;
-                          <v-btn color="red" class="white--text"><font-awesome-icon :icon="['fab','google']"/>&nbsp;&nbsp;Google</v-btn> 
+                         	<v-btn color="blue" class="white--text mr-3">
+    facebook<v-icon right>mdi-facebook</v-icon>
+    </v-btn>   
+                         OR
+                         	<v-btn color="red" class="white--text ml-3" >
+      google<v-icon right>mdi-google</v-icon>
+    </v-btn>
                         </div>
 
                       </v-form>
@@ -74,9 +79,9 @@
 
                      <br> <hr><br>
                      <v-row justify="space-around">
-                      <nuxt-link to="#"  class="  font-weight-light text-xs-center">     New to Butiq ? Create an account  </nuxt-link>
+                      <nuxt-link to="#"  class="  font-weight-light text-xs-center">Create an account</nuxt-link>
                       
-                      <nuxt-link to="#"  class="  font-weight-light text-xs-center">     Forgot Password?  </nuxt-link>
+                      <nuxt-link to="#"  class="  font-weight-light text-xs-center">Forgot Password?</nuxt-link>
                      </v-row>
                      
                     </v-container>
