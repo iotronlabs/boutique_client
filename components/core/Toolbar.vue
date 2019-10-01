@@ -5,7 +5,7 @@
     	<!-- <v-toolbar-side-icon  /> -->
 		<v-container fluid px-0>
 			<v-row no-gutters>
-				<v-col>
+				<v-col class="d-flex justify-center">
 				<v-img
 					src="/butiq.png"
 					contain
@@ -18,13 +18,14 @@
 				<v-col class="d-flex align-center">
 					<v-text-field
 						append-icon="mdi-magnify"
-						text
+						label="Customise your Style"
 						hide-details
-						solo-inverted
+						outlined
+						rounded
 						class="hidden-sm-and-down"
 					/>
 				</v-col>
-				<v-col class="d-flex justify-end align-center">
+				<v-col class="d-flex justify-center align-center">
 
 			
 					<span class="hidden-sm-and-down mr-2"><Login /></span>
@@ -56,9 +57,10 @@
 			<v-col class="hidden-md-and-up">
 				<v-text-field
 					append-icon="mdi-magnify"
-					flat
+					outlined
+					rounded
 					hide-details
-					solo-inverted
+					label="Customise your Style"
 				/>
 			</v-col>
 		</v-row>
