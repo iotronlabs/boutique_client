@@ -13,7 +13,7 @@
                     <v-col class="shrink" cols = "12" xs = "6" sm = "6" md = "6">
                         <v-img
                             height="450"
-                            src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                            src="dress.webp"
                         ></v-img>
                     </v-col>
                     <v-col cols = "12" xs = "6" sm = "6" md = "6">
