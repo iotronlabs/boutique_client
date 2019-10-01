@@ -23,7 +23,7 @@
                    <v-container>
                     
                      <v-row>
-                       <v-col class="d-flex justify-center">
+                       <v-col class="d-flex justify-center" md="8" offset-md="2">
                          
 	                     <v-form @submit.prevent="checkLogin" id="login-form"  method="post">
                          
@@ -57,14 +57,15 @@
                        
                          <div class="d-flex justify-center"> 
                          <v-btn color="primary" rounded outlined type="submit" left>LogIn</v-btn>
-                        
                          </div>
+
                          <br><hr><br>
+
                         <div class="d-flex justify-center">
                           
-                           <v-btn color="secondary" type="submit" left>Facebook</v-btn>    
-                          OR
-                         <v-btn color="primary">Google</v-btn> 
+                          <v-btn color="blue" class="white--text" type="submit" left><font-awesome-icon :icon="['fab', 'facebook']"/>&nbsp;&nbsp;Facebook</v-btn>    
+                         &nbsp;&nbsp; OR &nbsp;&nbsp;
+                          <v-btn color="red" class="white--text"><font-awesome-icon :icon="['fab','google']"/>&nbsp;&nbsp;Google</v-btn> 
                         </div>
 
                       </v-form>
@@ -72,8 +73,12 @@
                      </v-row>
 
                      <br> <hr><br>
-                     <a href="#"  class="  font-weight-light text-xs-center">     New to Butique ? Create an account  </a>
-                    
+                     <v-row justify="space-around">
+                      <nuxt-link to="#"  class="  font-weight-light text-xs-center">     New to Butiq ? Create an account  </nuxt-link>
+                      
+                      <nuxt-link to="#"  class="  font-weight-light text-xs-center">     Forgot Password?  </nuxt-link>
+                     </v-row>
+                     
                     </v-container>
                   </v-tab-item>
                   <v-tab-item>

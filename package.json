@@ -12,10 +12,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/vuetify": "^1.0.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/vue-fontawesome": "^0.1.7",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
-    "nuxt": "^2.0.0"
+    "@nuxtjs/vuetify": "^1.0.0",
+    "nuxt": "^2.0.0",
+    "nuxt-fontawesome": "^0.4.0"
   },
   "devDependencies": {
     "stylus": "^0.54.5",
