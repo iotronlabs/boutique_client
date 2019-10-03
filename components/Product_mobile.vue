@@ -14,9 +14,9 @@
             
                 <v-carousel :show-arrows="true"  hide-delimiters  height="250" style="width:100%">
                     <v-carousel-item
-                    v-for="(image,i) in images"
+                    v-for="(image,i) in product.images"
                     :key="i"
-                    :src="image.src"
+                    :src="image"
                     >
                     </v-carousel-item>
                 </v-carousel>
@@ -49,8 +49,8 @@
                             column
                             active-class="primary--text"
                             >
-                                <v-chip v-for="color in colors" :key="color">
-                                    {{ color.data }}
+                                <v-chip v-for="color in product.colors" :key="color">
+                                    {{ color }}
                                 </v-chip>
                             </v-chip-group>
                         </v-col>
@@ -65,8 +65,8 @@
                             column
                             active-class="primary--text"
                             >
-                                <v-chip v-for="size in sizes" :key="size">
-                                    {{ size.data }}
+                                <v-chip v-for="size in product.sizes" :key="size">
+                                    {{ size }}
                                 </v-chip>
                         </v-chip-group>
                         </v-col>
@@ -111,53 +111,31 @@ export default {
     data(){
         return{
             media : 'true',
-            images:[
-                {
-                    src : "dress.webp"
-                },
-                 {
-                    src : "dress.webp"
-                },
-                
-            ],
+           
             products:[
                 {
+                    images:['dress.webp','dress.webp'],
                     title : "Women Navy Blue  Dress",
                     subtitle : "Vero Moda",
                     dprice : "Rs 799",
                     oprice : "Rs 1000 (20% off)",
-                   // colors:['tyf' ,'dfghj' ,'dfghj']
+                    colors:['blue','green' , 'yellow'],
+                   sizes:['S','M','L','XL'],
+                },
+                 {
+                    images:['dress.webp','dress.webp'],
+                    title : "Women Navy Blue  Dress",
+                    subtitle : "Vero Moda",
+                    dprice : "Rs 799",
+                    oprice : "Rs 1000 (20% off)",
+                    colors:['blue','green' , 'yellow'],
+                   sizes:['S','M','L','XL'],
                 },
                 
                 
                 
             ],
-            colors:[
-                {
-                    data:"blue",
-                },
-                {
-                    data:"green",
-                },
-                {
-                    data:"purple",
-                },
-            ],
-
-            sizes:[
-                {
-                    data :"S",
-                },
-                {
-                    data : "M",
-                },
-                {
-                    data : "L",
-                },
-                {
-                    data : "XL",
-                },
-            ]
+           
         }
     }
 
