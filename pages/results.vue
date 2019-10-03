@@ -1,8 +1,10 @@
 <template>
-	<v-card>
+	<v-card tile>
 		<!-- toolbar -->
     	<v-toolbar class="mb-2" >
-				<span>{{title}}</span>
+				<span class="title">{{title }} </span>
+				<span> - {{items.length}} items</span>
+
 				<div class="flex-grow-1"></div>
 
 					<template v-if="$vuetify.breakpoint.mdAndUp">
@@ -11,7 +13,7 @@
 					<!-- sort by -->
 						<v-select
 							v-model="sortBy"
-							flat
+							text
 							prefix="Sort by:   "
 						  solo-inverted
 							hide-details
@@ -28,7 +30,7 @@
 						    <!-- filters -->
                <v-col cols="12" md="3" lg="3">
                     <v-card
-                        class="mx-auto fill-height"
+                        class="mx-auto fill-height hidden-sm-and-down"
                         max-width="300" 
                         
                     >
@@ -65,7 +67,9 @@
 													<v-col
 														v-for="item in props.items"
 														:key="item.name"
-														cols="12"
+													
+														xs="6"
+														sm="6"
 														md="4"
 														lg="4"
 													>
@@ -98,35 +102,10 @@
 										<!-- footer of table -->
 											<template v-slot:footer>
 												<v-row class="mt-2 mx-2" align="center" justify="center">
-													<span class="grey--text">Items per page</span>
-													<v-menu offset-y>
-														<template v-slot:activator="{ on }">
-															<v-btn
-																text
-																color="primary"
-																class="ml-2"
-																v-on="on"
-															>
-																{{ itemsPerPage }}
-																<v-icon>mdi-chevron-down</v-icon>
-															</v-btn>
-														</template>
-														<v-list>
-															<v-list-item
-																v-for="(number, index) in itemsPerPageArray"
-																:key="index"
-																@click="updateItemsPerPage(number)"
-															>
-																<v-list-item-title>{{ number }}</v-list-item-title>
-															</v-list-item>
-														</v-list>
-													</v-menu>
-
-												<div class="flex-grow-1"></div>
-
 												<span
 													class="mr-4
 													grey--text"
+													align="left"
 												>
 													Page {{ page }} of {{ numberOfPages }}
 												</span>
@@ -155,7 +134,44 @@
 											</v-data-iterator>
 										</v-card>
 									</v-col>
-		</v-row>
+
+		     </v-row>
+				 <v-row class="hidden-md-and-up">
+				 <v-col  sm="6" xs="6">
+					
+										<v-menu  >
+										<template v-slot:activator="{ on }">
+												<v-btn color="primary" dark v-on="on" large >
+													Filter
+												</v-btn>
+										</template>
+
+										<v-list>
+												<v-list-item
+												v-for="(item, index) in filters"
+												:key="index"
+												
+												>
+												<v-list-item-title>{{ item.title }}</v-list-item-title>
+												</v-list-item>
+										</v-list>
+										</v-menu>
+			
+					 </v-col>	
+					 <v-col sm="6" xs="6">
+					     
+											<v-select
+												v-model="sortBy"
+												text
+												class="purple"
+											  label="Sort by"
+												solo
+												hide-details
+												:items="keys"
+											></v-select>
+							
+					 </v-col>		
+				 </v-row>
 	</v-container>
 </v-card>
 
@@ -170,7 +186,7 @@
 				filter: {},
 				sortDesc: false,
 				page: 1,
-				itemsPerPage: 12,
+				itemsPerPage: 9,
 				sortBy: 'name',
 				 filters:[
                {title: 'Category'},
