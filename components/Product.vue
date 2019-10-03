@@ -1,6 +1,6 @@
 <template>
 <v-container fluid>
-    <v-row align-center justify-center v-for = "product in products" :key = "product" class = "hidden-sm-and-down">
+    <v-row align-center justify-center v-for="product in products" :key="product" class = "hidden-sm-and-down">
         <v-col cols = "12" md = "1" lg = "1"></v-col>
         <v-col cols = "12" xs = "12" sm = "12" md = "10" lg = "10">
             <v-card
@@ -52,8 +52,8 @@
                             column
                             active-class="primary--text"
                             >
-                                <v-chip v-for="color in colors" :key="color">
-                                    {{ color.data }}
+                                <v-chip v-for="color in product.colors" :key="color">
+                                    {{ color }}
                                 </v-chip>
                             </v-chip-group>
                         
@@ -98,40 +98,48 @@ export default {
                     subtitle : "Vero Moda",
                     dprice : "Rs 799",
                     oprice : "Rs 1000 (20% off)",
-                   // colors:['tyf' ,'dfghj' ,'dfghj']
+                   colors:['tyf' ,'dfghj' ,'dfghj']
+                },
+                {
+                    src : "/dress.webp",
+                    title : "Women Navy Blue  Dress",
+                    subtitle : "Vero Moda",
+                    dprice : "Rs 799",
+                    oprice : "Rs 1000 (20% off)",
+                   colors:['tyf' ,'dfghj' ,'dfghj']
                 },
                 
                 
                 
-            ],
-            rating : "4",
-
-            colors:[
-                {
-                    data:"blue",
-                },
-                {
-                    data:"green",
-                },
-                {
-                    data:"purple",
-                },
-            ],
-
-            sizes:[
-                {
-                    data :"S",
-                },
-                {
-                    data : "M",
-                },
-                {
-                    data : "L",
-                },
-                {
-                    data : "XL",
-                },
             ]
+            // rating : "4",
+
+            // colors:[
+            //     {
+            //         data:"blue",
+            //     },
+            //     {
+            //         data:"green",
+            //     },
+            //     {
+            //         data:"purple",
+            //     },
+            // ],
+
+            // sizes:[
+            //     {
+            //         data :"S",
+            //     },
+            //     {
+            //         data : "M",
+            //     },
+            //     {
+            //         data : "L",
+            //     },
+            //     {
+            //         data : "XL",
+            //     },
+            // ]
         }
     }
 
