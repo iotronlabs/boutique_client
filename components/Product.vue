@@ -67,8 +67,8 @@
                         column
                         active-class="primary--text"
                         >
-                            <v-chip v-for="size in sizes" :key="size">
-                                {{ size.data }}
+                            <v-chip v-for="size in product.sizes" :key="size">
+                                {{ size}}
                             </v-chip>
                         </v-chip-group>
                         
@@ -98,7 +98,8 @@ export default {
                     subtitle : "Vero Moda",
                     dprice : "Rs 799",
                     oprice : "Rs 1000 (20% off)",
-                   colors:['tyf' ,'dfghj' ,'dfghj']
+                   colors:['blue','green' , 'yellow'],
+                   sizes:['S','M','L','XL'],
                 },
                 {
                     src : "/dress.webp",
@@ -106,13 +107,14 @@ export default {
                     subtitle : "Vero Moda",
                     dprice : "Rs 799",
                     oprice : "Rs 1000 (20% off)",
-                   colors:['tyf' ,'dfghj' ,'dfghj']
+                   colors:['blue','green' , 'yellow'],
+                   sizes:['S','M','L','XL'],
                 },
                 
                 
                 
-            ]
-            // rating : "4",
+            ],
+             rating : "4",
 
             // colors:[
             //     {
