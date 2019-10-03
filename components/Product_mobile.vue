@@ -10,7 +10,7 @@
             :elevation="undefined"
             :raised="false"
             :width="undefined"
-            :max-height="550">
+            :max-height="undefined">
             
                 <v-carousel :show-arrows="true"  hide-delimiters  height="250" style="width:100%">
                     <v-carousel-item
@@ -33,9 +33,9 @@
                     </v-row>
                     <v-row>
                         <v-col cols = "12" xs = "6" sm = "6">
-                            <p class = "font-weight-bold title black--text"> {{product.dprice}}&emsp;-</p>
+                            <p class = "font-weight-bold title black--text"> Price - {{product.dprice}}&emsp;</p>
                         </v-col>
-                        <v-col cols = "12" xs = "6" sm = "6" >
+                        <v-col cols = "12" xs = "6" sm = "6">
                             <p class = "title"> {{product.oprice}}</p>
                         </v-col>
                     </v-row>
@@ -128,6 +128,7 @@ export default {
                     oprice : "Rs 1000 (20% off)",
                    // colors:['tyf' ,'dfghj' ,'dfghj']
                 },
+                
                 
                 
             ],
