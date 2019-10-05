@@ -87,7 +87,7 @@
                     </v-container>
                   </v-tab-item>
                   <v-tab-item>
-                    signup page
+                   <signup />
                   <div class="title font-weight-light text-sm-center"> <a href="#">     New to Butique ? Create an account </a></div>
                   </v-tab-item>
               </v-tabs>
@@ -96,8 +96,13 @@
 </template>
 
 <script>
+import signup from "@/components/signup"
 
 export default {
+  components:{
+    signup
+
+  },
     data() {
 	  	return {
 
