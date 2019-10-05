@@ -136,12 +136,18 @@
 									</v-col>
 
 		     </v-row>
-				 <v-row class="hidden-md-and-up">
-				 <v-col  sm="6" xs="6">
-					
-										<v-menu  >
+		 <v-app-bar
+      fixed
+      app
+      bottom
+			floating
+      class="hidden-md-and-up mx-auto"
+      >
+			<v-row class="">
+				<v-col xs="6" sm="6" >
+					<v-menu class="text-center" >
 										<template v-slot:activator="{ on }">
-												<v-btn color="primary" dark v-on="on" large >
+											<v-btn color="primary" dark v-on="on" large class="px-12 py-4" height="50">
 													Filter
 												</v-btn>
 										</template>
@@ -155,23 +161,24 @@
 												<v-list-item-title>{{ item.title }}</v-list-item-title>
 												</v-list-item>
 										</v-list>
-										</v-menu>
+					</v-menu>
 			
 					 </v-col>	
-					 <v-col sm="6" xs="6">
-					     
-											<v-select
+					 <v-col xs="6" sm="6">
+					     <v-select
 												v-model="sortBy"
-												text
-												class="purple"
-											  label="Sort by"
-												solo
+											
+												class=""
+											  placeholder="Sort by"
+												color="purple"
 												hide-details
 												:items="keys"
+												outlined
 											></v-select>
 							
 					 </v-col>		
 				 </v-row>
+			 </v-app-bar>
 	</v-container>
 </v-card>
 
