@@ -2,7 +2,13 @@ const drawer = false
 const items= [
 	{
 		text: 'Men',
-		to: '/Men'
+		to: '/Men',
+		items:[
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me 2' },
+		],
 	},
 	{
 		text: 'Women',

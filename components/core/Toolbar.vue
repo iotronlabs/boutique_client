@@ -41,7 +41,7 @@
   	</v-toolbar>
 	<v-toolbar flat>
 		<v-row >
-			<div class="hidden-sm-and-down navbar-menu" >
+			<!--<div class="hidden-sm-and-down navbar-menu" >
 				<v-btn
 					v-for="(item, i) in items" :key="i"
 					:to="item.to"
@@ -53,7 +53,35 @@
 				>
 					{{item.text}}
 				</v-btn>
-			</div>
+			</div>-->
+			<div class="hidden-sm-and-down navbar-menu" >
+				<v-menu open-on-hover top offset-y>
+					<template v-slot:activator="{ on }">
+					<v-btn
+					v-for="(item, i) in items" :key="i"
+					:to="item.to"
+					router
+					exact
+					flat
+					v-text="item.text" 
+					class="navbar-menu-items"	
+					v-on="on"
+					>
+						{{item.text}}
+					</v-btn>
+					</template>
+			
+					<v-list>
+					<v-list-item
+						v-for="sb in items.sub_titles"
+						:key="sb"
+						
+					>
+						<v-list-item-title>{{ sb.title }}</v-list-item-title>
+					</v-list-item>
+					</v-list>
+				</v-menu>
+   	`		 </div>
 			<v-col class="hidden-md-and-up">
 				<v-text-field
 					append-icon="mdi-magnify"
