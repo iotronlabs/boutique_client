@@ -3,7 +3,7 @@ const items= [
 	{
 		text: 'Men',
 		to: '/Men',
-		items:[
+		sub_items:[
 			{ title: 'Click Me' },
 			{ title: 'Click Me' },
 			{ title: 'Click Me' },
@@ -12,15 +12,33 @@ const items= [
 	},
 	{
 		text: 'Women',
-		to: '/Women'
+		to: '/Women',
+		sub_items:[
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me 2' },
+		],
 	},
 	{
 		text: 'Accessories',
-		to: '/'
+		to: '/accessories',
+		sub_items:[
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me 2' },
+		],
 	},
 	{
 		text: 'Arts and Crafts',
-		to: '/'
+		to: '/arts',
+		sub_items:[
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me' },
+			{ title: 'Click Me 2' },
+		],
 	}
 ]
 export default {

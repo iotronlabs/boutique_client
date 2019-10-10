@@ -31,9 +31,9 @@
 					<span class="hidden-sm-and-down mr-2"><Login /></span>
 			
 					<!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
-								<v-btn rounded outlined color="primary" >
-       Cart<v-icon right>mdi-cart</v-icon>
-    </v-btn>
+					<v-btn rounded outlined color="primary" >
+						Cart<v-icon right>mdi-cart</v-icon>
+					</v-btn>
 				</v-col>
 			</v-row>
 			
@@ -55,33 +55,38 @@
 				</v-btn>
 			</div>-->
 			<div class="hidden-sm-and-down navbar-menu" >
-				<v-menu open-on-hover top offset-y>
+				<v-menu open-on-hover bottom offset-y v-for="(item, i) in items" :key="i">
 					<template v-slot:activator="{ on }">
 					<v-btn
-					v-for="(item, i) in items" :key="i"
-					:to="item.to"
-					router
-					exact
-					flat
-					v-text="item.text" 
-					class="navbar-menu-items"	
-					v-on="on"
+						:to="item.to"
+						router
+						exact
+						flat
+						v-text="item.text" 
+						class="navbar-menu-items"	
+						v-on="on"
+						rounded
+						outlined
+						color="primary"
 					>
 						{{item.text}}
-					</v-btn>
-					</template>
-			
-					<v-list>
-					<v-list-item
-						v-for="sb in items.sub_titles"
-						:key="sb"
 						
-					>
-						<v-list-item-title>{{ sb.title }}</v-list-item-title>
-					</v-list-item>
+					</v-btn>
+					
+					</template>
+					<v-list>
+						<v-list-item
+							v-for="sb in item.sub_items"
+							:key="sb"
+							
+						>
+							<v-list-item-title>{{ sb.title }}</v-list-item-title>
+						</v-list-item>
 					</v-list>
+					
 				</v-menu>
-   	`		 </div>
+   			</div>
+			   
 			<v-col class="hidden-md-and-up">
 				<v-text-field
 					append-icon="mdi-magnify"
@@ -105,7 +110,7 @@ export default {
 	},
 	data() {
 		return {
-
+			hover: false
 		}
 	},
     computed: {
