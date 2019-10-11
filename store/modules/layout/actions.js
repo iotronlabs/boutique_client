@@ -1,7 +1,8 @@
 export default {
 	async callUpdateNavMenu({ commit }) {
 		console.log('called')
-
-		commit('setNavMenu')
-	}
+		const response = await this.$axios.get('/categories')
+		commit('setNavMenu',response)
+	},
+	
 }

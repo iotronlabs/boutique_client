@@ -6,8 +6,10 @@ export default {
     toggleDrawer({}) {
 		state.drawer = !state.drawer
 	},
-	async setNavMenu() {
-		const response = await this.$axios.get('/categories')
+	setNavMenu(state, response) {
+		
+		state.categories = response.data
 		console.log(response.data)
-	}	
+	},	
+	
 }

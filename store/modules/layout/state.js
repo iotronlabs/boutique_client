@@ -41,7 +41,9 @@ const items= [
 		],
 	}
 ]
+const categories = []
 export default {
 	drawer,
-	items
+	items,
+	categories
 }
