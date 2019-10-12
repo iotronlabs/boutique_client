@@ -3,10 +3,10 @@
     <v-stepper-step :complete="active > 1" step="1">  Enter email </v-stepper-step>
     <v-stepper-content step="1">
         <div class="px-4 py-1" >
-            <v-form  id="sign-up-form"  method="post">
+            <v-form  id="sign-up-form" ref="sign-up-form"  method="post" @submit.prevent="signup1">
                  <v-text-field
                    prepend-inner-icon="email"
-                   placeholder=" "
+                   placeholder="Enter your email"
                    name="email"
                    type="email"
                    v-model="email"
@@ -15,8 +15,9 @@
                    outlined
                    >
                    </v-text-field>
+                  <v-btn color="primary" rounded type="submit" >Send OTP</v-btn>
            </v-form>
-           <v-btn color="primary" @click="active = 2" rounded >Send OTP</v-btn>
+           
         </div>
     </v-stepper-content>
 
@@ -79,7 +80,7 @@
                           solo
                           >
                         </v-text-field>
-                        <v-text-field id="password"
+                        <v-text-field id="cnfpassword"
                           prepend-inner-icon="lock"
                           v-model="confirm_password"
                           :append-icon="show ? 'visibility' : 'visibility_off'"
@@ -118,6 +119,11 @@
         confirm_password:'',
         
       }
-    },
+	},
+	methods: {
+		signup1() {
+			this.active=2
+		}
+	}
   }
 </script>
