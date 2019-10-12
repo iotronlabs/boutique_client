@@ -1,9 +1,9 @@
 <template>
 <div>
-  	<v-toolbar app flat class="navbar">
-		<v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"></v-app-bar-nav-icon>
+  	<v-app-bar app prominent>
+		<v-app-bar-nav-icon class="hidden-md-and-up mt-5" @click="toggleDrawer"></v-app-bar-nav-icon>
     	<!-- <v-toolbar-side-icon  /> -->
-		<v-container fluid px-0>
+		<v-container fluid px-0 py-0>
 			<v-row no-gutters>
 				<v-col class="d-flex justify-center">
 				<v-img
@@ -36,11 +36,7 @@
 					</v-btn>
 				</v-col>
 			</v-row>
-			
-		</v-container>
-  	</v-toolbar>
-	<v-toolbar flat>
-		<v-row >
+				<v-row class="d-flex justify-center mt-n2">
 			<!--<div class="hidden-sm-and-down navbar-menu" >
 				<v-btn
 					v-for="(item, i) in items" :key="i"
@@ -54,7 +50,7 @@
 					{{item.text}}
 				</v-btn>
 			</div>-->
-			<div class="hidden-sm-and-down navbar-menu" >
+			<div class="hidden-sm-and-down" >
 				<v-menu open-on-hover bottom offset-y v-for="(item, i) in items" :key="i">
 					<template v-slot:activator="{ on }">
 					<v-btn
@@ -62,12 +58,12 @@
 						router
 						exact
 						flat
-						v-text="item.text" 
-						class="navbar-menu-items"	
+						v-text="item.text" 	
 						v-on="on"
 						rounded
 						outlined
 						color="primary"
+						class="mx-1"
 					>
 						{{item.text}}
 						
@@ -87,9 +83,8 @@
 				</v-menu>
    			</div>
 			   
-			<v-col class="hidden-md-and-up">
+			<v-col class="hidden-md-and-up py-0">
 				<v-text-field
-					append-icon="mdi-magnify"
 					outlined
 					rounded
 					hide-details
@@ -97,7 +92,10 @@
 				/>
 			</v-col>
 		</v-row>
-  	</v-toolbar>
+			
+		</v-container>
+  	</v-app-bar>
+	
 </div>
 </template>
 
@@ -127,17 +125,4 @@ export default {
 </script>
 <style scoped>
 
-.navbar
-{
-	padding-top: 20px;
-}
-
-.navbar-menu
-{
-	margin-left: 30%;
-}
-.navbar-menu-items
-{
-	margin: 10px;
-}
 </style>
