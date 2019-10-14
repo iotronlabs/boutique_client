@@ -23,7 +23,7 @@
 
     <template>
       
-        <v-list>
+        <v-list nav>
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
@@ -91,21 +91,6 @@ export default {
 	components: {
 		Login
   },
-  
-  data: () => ({
-      admins: [
-        ['Management', 'people_outline'],
-        ['Settings', 'settings'],
-      ],
-      cruds: [
-        ['Create', 'add'],
-        ['Read', 'insert_drive_file'],
-        ['Update', 'update'],
-        ['Delete', 'delete'],
-      ],
-  }),
-
-
 
   computed: {
 		...mapState({
