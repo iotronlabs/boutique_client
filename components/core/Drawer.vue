@@ -23,7 +23,7 @@
 
     <template>
       
-        <v-list>
+        <v-list shaped>
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
@@ -34,7 +34,6 @@
 
           <v-list-group
             prepend-icon="account_circle"
-            value="true"
             v-for="item in categories.data" :key="item"
           >
             <template v-slot:activator>
@@ -43,8 +42,7 @@
 
             <v-list-group
               no-action
-              sub-group
-              value="true" 
+              sub-group            
               v-for="children in item.children" 
               :key="children"
             >
