@@ -23,7 +23,7 @@
 
     <template>
       
-        <v-list nav>
+        <v-list nav avatar shaped>
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
@@ -33,11 +33,15 @@
           </v-list-item>
 
           <v-list-group
-            prepend-icon="account_circle"
+            
             value="true"
             v-for="item in categories.data" :key="item"
           >
+             
             <template v-slot:activator>
+              <v-list-item-avatar v-if="avatar">
+              <v-img :src="item.avatar"></v-img>
+            </v-list-item-avatar>
               <v-list-item-title>{{item.name}}</v-list-item-title>
             </template>
 
@@ -101,6 +105,9 @@ export default {
 		dummy() {}
   },
 
+  data: ()=>({
+     avatar: '/butiq.png',
+  }),
 	mounted() {
 
   },
