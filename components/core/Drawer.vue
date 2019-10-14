@@ -47,8 +47,7 @@
 
             <v-list-group
               no-action
-              sub-group
-              value="true" 
+              sub-group            
               v-for="children in item.children" 
               :key="children"
             >
