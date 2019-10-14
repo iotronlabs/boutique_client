@@ -20,15 +20,26 @@
 
               </v-tab>
                  <v-tab-item >
-                   <v-container>
+                   <v-container fluid>
                     
-                     <v-row>
+                     <v-row no-gutters>
                        <v-col class="d-flex justify-center" md="8" offset-md="2">
                          
-	                     <v-form @submit.prevent="checkLogin" id="login-form"  method="post">
                          
+	                     <v-form @submit.prevent="checkLogin" id="login-form"  method="post">
+                        
+				<v-img
+					src="/butiq.png"
+					contain
+					height="120"
+					width="120"
+					max-width="120"
+					@click="$vuetify.goTo(0)"
+          class="mx-auto"
+				/>
+				
                         <v-text-field
-                        prepend-icon="person"
+                        prepend-icon="email"
                         label="Email ID"
                         placeholder=" "
                         name="email"
@@ -36,7 +47,6 @@
                         v-model="email"
                         autocomplete="off"
                         required
-                        outline
                         >
                        </v-text-field>
                         <v-text-field id="password"
@@ -50,7 +60,7 @@
                           hint="At least 8 characters"
                           autocomplete="off"
                           @click:append="show = !show"
-                          outline
+                          
                           >
                         </v-text-field>
 
@@ -60,19 +70,19 @@
                          </div>
 
                          <br><hr><br>
-
-                        <div class="d-flex justify-center">
-
+ <p class="text-center">Log in Via</p>
+                  
+<div>
                           
-                         	<v-btn color="blue" class="white--text mr-3">
+                         	<v-btn color="blue" class="white--text mr-1">
     facebook<v-icon right>mdi-facebook</v-icon>
     </v-btn>   
-                         OR
-                         	<v-btn color="red" class="white--text ml-3" >
+                        OR
+                         	<v-btn color="red" class="white--text ml-1" >
       google<v-icon right>mdi-google</v-icon>
     </v-btn>
-                        </div>
-
+                        
+</div>
                       </v-form>
                        </v-col>
                      </v-row>
