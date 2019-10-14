@@ -3,6 +3,7 @@
   	<v-app-bar app prominent>
 		<v-app-bar-nav-icon class="hidden-md-and-up mt-5" @click="toggleDrawer"></v-app-bar-nav-icon>
     	<!-- <v-toolbar-side-icon  /> -->
+		
 		<v-container fluid px-0 py-0>
 			<v-row no-gutters>
 				<v-col class="d-flex justify-center">
@@ -70,13 +71,32 @@
 					</v-btn>
 					
 					</template>
-					<v-list>
+					<!-- <v-list>
 						<v-list-item
 							v-for="sb in item.sub_items"
 							:key="sb"
 							
 						>
 							<v-list-item-title>{{ sb.title }}</v-list-item-title>
+							<v-list-item-title>{{ categories.data }}</v-list-item-title>
+						</v-list-item>
+					</v-list> -->
+					<v-list v-for="item in categories.data" :key="item"	>
+						<v-list-item
+						v-if="item.name=='Men'"
+						>
+							
+							<v-list-item-title>{{ item}}</v-list-item-title>
+							
+						</v-list-item>
+					</v-list>
+					<v-list v-for="item in categories.data" :key="item"	>
+						<v-list-item
+						v-if="item.name=='Women'"
+						>
+							
+							<v-list-item-title>{{ item}}</v-list-item-title>
+							
 						</v-list-item>
 					</v-list>
 					
@@ -112,9 +132,13 @@ export default {
 		}
 	},
     computed: {
-	//   ...mapGetters('layout',['links'])
+	    // ...mapGetters({
+		// 	categories: 'categories'
+			
+		// }),
 		...mapState({
-			items: state => state.layout.items
+			items: state => state.layout.items,
+			categories: state => state.layout.categories
 		})
     },
 
