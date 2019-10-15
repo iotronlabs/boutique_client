@@ -38,60 +38,63 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-row no-gutters>
-          <v-col class="hidden-md-and-up py-0 mt-n5">
+        <v-row no-gutters class="d-flex justify-center mt-n2">
+          <!--<div class="hidden-sm-and-down navbar-menu" >
+				<v-btn
+					v-for="(item, i) in items" :key="i"
+					:to="item.to"
+					router
+					exact
+					flat
+					v-text="item.text" 
+					class="navbar-menu-items"	
+				>
+					{{item.text}}
+				</v-btn>
+          </div>-->
+          <div class="hidden-sm-and-down">
+            <v-menu open-on-hover bottom offset-y v-for="(item, i) in items" :key="i">
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  :to="item.to"
+                  router
+                  exact
+                  flat
+                  v-text="item.text"
+                  v-on="on"
+                  rounded
+                  outlined
+                  color="primary"
+                  class="mx-1"
+                >{{item.text}}</v-btn>
+              </template>
+              <!-- <v-list>
+						<v-list-item
+							v-for="sb in item.sub_items"
+							:key="sb"
+							
+						>
+							<v-list-item-title>{{ sb.title }}</v-list-item-title>
+							<v-list-item-title>{{ categories.data }}</v-list-item-title>
+						</v-list-item>
+              </v-list>-->
+              <v-list v-for="item in categories.data" :key="item">
+                <v-list-item v-if="item.name=='Men'">
+                  <v-list-item-title>{{ item}}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+              <v-list v-for="item in categories.data" :key="item">
+                <v-list-item v-if="item.name=='Women'">
+                  <v-list-item-title>{{ item}}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
+
+          <v-col class="hidden-md-and-up py-0 mt-n3">
             <v-text-field outlined rounded hide-details label="Customise your Style" />
           </v-col>
         </v-row>
-
-        <v-sheet class="hidden-sm-and-down">
-          <v-row>
-            <v-col cols="3"></v-col>
-            <v-menu
-              open-on-hover
-              :close-on-content-click="false"
-              class="hidden-sm-and-down"
-              bottom
-              v-for="n in 3"
-              :key="n"
-            >
-              <template v-slot:activator="{ on }">
-                <v-col cols="2">
-                  <span v-on="on">{{categories.data[n-1].name}}</span>
-                </v-col>
-              </template>
-
-              <v-card>
-                <v-list-group prepend-icon="account_circle" value="true">
-                  <template v-slot:activator>
-                    <v-list-item-title>{{categories.data[n-1].name}}</v-list-item-title>
-                  </template>
-
-                  <v-list-group
-                    no-action
-                    sub-group
-                    value="true"
-                    v-for="children in categories.data[n-1].children"
-                    :key="children"
-                  >
-                    <template v-slot:activator>
-                      <v-list-item-content>
-                        <v-list-item-title>{{children.name}}</v-list-item-title>
-                      </v-list-item-content>
-                    </template>
-
-                    <v-list-item link v-for="subchildren in children.children" :key="subchildren">
-                      <v-list-item-title>{{subchildren.name}}</v-list-item-title>
-                      <v-list-item-icon>
-                        <v-icon></v-icon>
-                      </v-list-item-icon>
-                    </v-list-item>
-                  </v-list-group>
-                </v-list-group>
-              </v-card>
-            </v-menu>
-          </v-row>
-        </v-sheet>
       </v-container>
     </v-app-bar>
   </div>
