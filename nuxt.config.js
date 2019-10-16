@@ -45,7 +45,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-
+	'@nuxtjs/auth',
     //fontawesome dependancies
     [
       'nuxt-fontawesome', {
@@ -67,15 +67,69 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {
-    baseURL: 'https://api.butiq.co.in/public/api',
-    // baseURL: 'http://localhost:8000',
-    proxyHeaders: false,
-    credentials: false,
-    proxy: false,
-    debug: false,
-    urlencoded: true
-  },
+  	axios: {
+		baseURL: 'https://api.butiq.co.in/public/api',
+		// baseURL: 'http://localhost:8000',
+		proxyHeaders: false,
+		credentials: false,
+		proxy: false,
+		debug: false,
+		urlencoded: true
+	  },
+	  
+	// Auth module configuration
+
+	auth: {
+		redirect: {
+			home: '/',
+			logout: '/',
+			login: '/',
+			callback: '/',
+		},
+		watchLoggedIn: true,
+		refresh_token: {
+			prefix: '_refresh_token.',
+		},
+		token: {
+			prefix: '_token.',
+		},
+		localStorage: false,
+		cookie: {
+			prefix: 'auth.',
+			options: {
+			  path: '/',
+			  expires: 5,
+			  // domain: '',
+			  // secure - false,
+			},
+		},
+		strategies: {
+			local: {
+				endpoints: {
+					login: {url: '/login',	method: 'post',	propertyName: 'token'}
+					// user: {url: '/me',method: 'get',propertyName: 'data'},
+					// logout: {url: '/api/students/out'}
+				},
+				tokenRequired: true,
+				tokenType: 'Bearer',
+			},
+			facebook: {
+				client_id: '2442813762714926',
+				// userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
+				scope: ['public_profile', 'email', 'user_birthday']
+			},
+			google: {
+				client_id: '971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com'
+			},
+			// 'laravel.passport': {
+			// 	url: '/login',
+			// 	client_id: '5',
+			// 	client_secret: 'lE5INGyNYThi92zXkJKxQjOqBoVdTJoH9hmR8PAU'
+			// },
+		}
+	},
+
+
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
