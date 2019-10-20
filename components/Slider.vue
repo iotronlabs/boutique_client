@@ -1,45 +1,16 @@
 <template>
   <div>
-    <v-sheet
-      class="mx-auto hidden-md-and-up"
-      elevation="2"
-    >
-      <v-slide-group
-        v-model="model"
-        class="pa-4"
-       >
-        <v-slide-item
-          v-for="item in items"
-          :key="item"
-          v-slot:default="{ active, toggle }"
-        >
-          <v-card
-           class="ma-4 "
-            width="100"
-            exact
-            v-bind:to="item.to"
-            raised
-            outline
-          >
-         <v-img
-          class="white--text hidden-md-and-up"
-          max-width="200"
-          max-height="300"
-          v-bind:src="item.sr"
-          >
-         <div class="align-end">{{item.title}}</div> 
-         </v-img>
-          <v-img
-          class="white--text hidden-sm-and-down"
-          max-height="500"
-          max-width="300"
-          v-bind:src="item.sr"
-          >
-         <div class="align-center fill-height">{{item.title}}</div> 
-        
-         </v-img>
-         </v-card>
-        </v-slide-item>
+    <v-sheet class="mx-auto hidden-md-and-up" elevation="2" max-width="400">
+      <v-slide-group v-model="model">
+        <v-row no-gutters class="d-flex justify-center">
+          <v-slide-item v-for="item in items" :key="item" v-slot:default="{ active, toggle }">
+            <v-card class="mx-1 my-2" width="120" exact v-bind:to="item.to" raised outline>
+              <v-img class="white--text" max-height="160" v-bind:src="item.sr">
+                <div class="mt-1 ml-2">{{item.title}}</div>
+              </v-img>
+            </v-card>
+          </v-slide-item>
+        </v-row>
       </v-slide-group>
     </v-sheet>
   </div>
@@ -47,39 +18,31 @@
 
 <script>
 export default {
-    data(){
-        return{
-            items:[
-                {
-                    title:'Men',
-                    to:'/',
-                    sr:'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
-                },
-                 {
-                    title:'Women',
-                    to:'/inspire',
-                    sr:'https://cdn.vuetifyjs.com/images/cards/store.jpg'
-                },
-                 {
-                    title:'Accessories',
-                    to:'/',
-                    sr:'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
-                   
-                },
-                 {
-                    title:'Art and Craft',
-                    to:'/',
-                    sr:'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
-                },
-                
-            ],
-            model:null
-        }
-    }
+  data() {
+    return {
+      items: [
+        {
+          title: "Men",
+          to: "/",
+          sr: "/man.jpg"
+        },
+        {
+          title: "Women",
+          to: "/inspire",
+          sr: "/women.jpg"
+        },
 
-}
+        {
+          title: "Art and Craft",
+          to: "/",
+          sr: "https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        }
+      ],
+      model: null
+    };
+  }
+};
 </script>
 
 <style>
-
 </style>

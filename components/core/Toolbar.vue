@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-app-bar app prominent>
-      <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="hidden-md-and-up mt-2" @click="toggleDrawer"></v-app-bar-nav-icon>
       <!-- <v-toolbar-side-icon  /> -->
 
-      <v-container fluid px-0 py-0 mt-n2>
+      <v-container fluid px-0 py-0 mt-n3>
         <v-row no-gutters>
-          <v-col class="d-flex justify-center">
+          <v-col class="d-flex justify-center align-center">
             <v-img
               src="/butiq.png"
               contain
