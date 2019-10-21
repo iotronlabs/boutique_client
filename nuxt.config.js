@@ -6,9 +6,13 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: process.env.npm_package_name + " - " + process.env.npm_package_description,
+    titleTemplate:
+      process.env.npm_package_name +
+      " - " +
+      process.env.npm_package_description,
     title: process.env.npm_package_name || "",
-    meta: [{
+    meta: [
+      {
         charset: "utf-8"
       },
       {
@@ -21,14 +25,16 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{
+    link: [
+      {
         rel: "icon",
         type: "image/x-icon",
         href: "/icon.png"
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
+        href:
+          "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
       }
     ]
   },
@@ -53,22 +59,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
-    "@nuxtjs/auth",
-    //fontawesome dependancies
-    [
-      "nuxt-fontawesome",
-      {
-        imports: [{
-            set: "@fortawesome/free-solid-svg-icons",
-            icons: ["fas"]
-          },
-          {
-            set: "@fortawesome/free-brands-svg-icons",
-            icons: ["fab"]
-          }
-        ]
-      }
-    ]
+    "@nuxtjs/auth"
   ],
   /*
    ** Axios module configuration
@@ -130,7 +121,8 @@ export default {
         scope: ["public_profile", "email", "user_birthday"]
       },
       google: {
-        client_id: "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
+        client_id:
+          "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
       }
       // 'laravel.passport': {
       // 	url: '/login',
@@ -151,7 +143,16 @@ export default {
       light: true,
       themes: {
         light: {
-          primary: colors.purple.darken1,
+          primary: colors.deepPurple.base,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        },
+        dark: {
+          primary: colors.purple.lighten2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
