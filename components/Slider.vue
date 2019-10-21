@@ -35,7 +35,7 @@ export default {
         {
           title: "Art and Craft",
           to: "/",
-          sr: "https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+          sr: "art.jpg"
         }
       ],
       model: null

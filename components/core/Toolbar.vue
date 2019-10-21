@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-app-bar app prominent>
-      <v-app-bar-nav-icon class="hidden-md-and-up mt-2" @click="toggleDrawer"></v-app-bar-nav-icon>
+    <v-app-bar app>
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"></v-app-bar-nav-icon>
       <!-- <v-toolbar-side-icon  /> -->
 
-      <v-container fluid px-0 py-0 mt-n3>
+      <v-container fluid px-0>
         <v-row no-gutters>
-          <v-col class="d-flex justify-center align-center">
+          <v-col class="d-flex align-center">
             <v-img
               src="/butiq.png"
               contain
@@ -15,97 +15,65 @@
               max-width="90"
               @click="$vuetify.goTo(0)"
             />
+            <!-- nav categories -->
+            <v-col class="hidden-sm-and-down">
+              <v-col class="d-flex align-center mx-2">
+                <v-col v-for="category in categories.data" :key="category">
+                  <v-menu
+                    open-on-hover
+                    :close-on-content-click="false"
+                    class="hidden-sm-and-down"
+                    bottom
+                    offset-y="5"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-btn text v-on="on">{{category.name}}</v-btn>
+                    </template>
+
+                    <v-card width="600px" height="300px">
+                      <v-row class="mx-5">
+                        <v-col cols="4" v-for="children in category.children" :key="children">
+                          <!-- <v-hover v-slot:default="{ hover }" value="true"> -->
+                          <v-row class="my-3">
+                            <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
+                          </v-row>
+
+                          <v-row v-for="subchildren in children.children" :key="subchildren">
+                            <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                  </v-menu>
+                </v-col>
+              </v-col>
+            </v-col>
           </v-col>
 
-          <!-- nav categories -->
-
-          <v-col class="d-flex align-center">
-            <v-text-field
-              append-icon="mdi-magnify"
-              label="Customise your Style"
-              hide-details
-              outlined
-              rounded
-              class="hidden-sm-and-down"
-            />
-          </v-col>
-          <v-col class="d-flex justify-center align-center">
-            <span class="hidden-sm-and-down mr-2">
+          <v-col class="d-flex justify-end align-center">
+            <v-col class="hidden-sm-and-down mx-2">
+              <v-text-field
+                append-icon="mdi-magnify"
+                label="Customise your Style"
+                hide-details
+                outlined
+                rounded
+                dense
+                color="blue"
+              />
+            </v-col>
+            <span class="hidden-sm-and-down mx-2">
               <Login />
             </span>
+            <v-btn class="hidden-md-and-up mr-2" small outlined fab color="primary">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
 
             <!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
             <v-btn rounded outlined color="primary">
               Cart
               <v-icon right>mdi-cart</v-icon>
             </v-btn>
-          </v-col>
-        </v-row>
-        <v-row no-gutters class="d-flex justify-center mt-n2">
-          <div class="hidden-sm-and-down">
-            <div class="d-flex">
-              <v-col v-for="category in categories.data" :key="category">
-                <v-menu
-                  open-on-hover
-                  :close-on-content-click="false"
-                  class="hidden-sm-and-down"
-                  bottom
-                  offset-y="5"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-btn text v-on="on">{{category.name}}</v-btn>
-                  </template>
-
-                  <v-card width="600px" height="300px">
-                    <v-row class="mx-5">
-                      <v-col cols="4" v-for="children in category.children" :key="children">
-                        <!-- <v-hover v-slot:default="{ hover }" value="true"> -->
-                        <v-row class="my-3">
-                          <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
-                        </v-row>
-
-                        <v-row v-for="subchildren in children.children" :key="subchildren">
-                          <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                </v-menu>
-              </v-col>
-            </div>
-          </div>
-          <!-- <div class="hidden-sm-and-down">
-            <v-menu open-on-hover bottom offset-y v-for="(item, i) in items" :key="i">
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  :to="item.to"
-                  router
-                  exact
-                  flat
-                  v-text="item.text"
-                  v-on="on"
-                  rounded
-                  outlined
-                  color="primary"
-                  class="mx-1"
-                >{{item.text}}</v-btn>
-              </template>
-              
-              <v-list v-for="item in categories.data" :key="item">
-                <v-list-item v-if="item.name=='Men'">
-                  <v-list-item-title>{{ item}}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-              <v-list v-for="item in categories.data" :key="item">
-                <v-list-item v-if="item.name=='Women'">
-                  <v-list-item-title>{{ item}}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </div>-->
-
-          <v-col class="hidden-md-and-up py-0 mt-n3">
-            <v-text-field outlined rounded hide-details label="Customise your Style" />
           </v-col>
         </v-row>
       </v-container>
