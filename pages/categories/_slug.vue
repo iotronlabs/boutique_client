@@ -55,24 +55,7 @@
                 <v-row>
                   <!-- product -->
                   <v-col v-for="item in props.items" :key="item.name" xs="6" sm="6" md="4" lg="4">
-                    <v-card tile class="my-2" :to="item.to">
-                      <v-img
-                        :src="item.src"
-                        exact
-                        class="white--text"
-                        height="200px"
-                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                      ></v-img>
-                      <v-card-title class v-text="item.title"></v-card-title>
-                      <v-card-text>
-                        <span>{{item.desc}}</span>
-                        <br />
-                        <span class="subtitle-2 black--text">Rs. {{item.price}}</span>
-                      </v-card-text>
-                      <v-card-actions>
-                        <div class="flex-grow-1"></div>
-                      </v-card-actions>
-                    </v-card>
+                    <Product :product="product" />
                   </v-col>
                 </v-row>
               </template>
@@ -124,10 +107,17 @@
     </v-container>
   </v-card>
 </template>
+
+
+
+
 <script>
+import Product from "@/components/products/Product";
+
 export default {
   data() {
     return {
+      products: [],
       title: "Men and women",
       itemsPerPageArray: [3, 6, 9, 12, 15, 18],
       search: "",
@@ -157,76 +147,6 @@ export default {
           desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
           to: "/inspire",
           price: "2000"
-        },
-        {
-          src: "/sherwani.jpg",
-          title: "Sherwani",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "10000"
-        },
-        {
-          src: "/lehenga.png",
-          title: "Lehenga",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "20000"
-        },
-        {
-          src: "/kurta.jpg",
-          title: "Kurta",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "2000"
-        },
-        {
-          src: "/dress1.jpg",
-          title: "Dress",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "2000"
-        },
-        {
-          src: "/sherwani.jpg",
-          title: "Sherwani",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "4000"
-        },
-        {
-          src: "/lehenga.png",
-          title: "Lehenga",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "5000"
-        },
-        {
-          src: "/dress1.jpg",
-          title: "Dress",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "2000"
-        },
-        {
-          src: "/sherwani.jpg",
-          title: "Sherwani",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "3000"
-        },
-        {
-          src: "/lehenga.png",
-          title: "Lehenga",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "5000"
-        },
-        {
-          src: "/lehenga.png",
-          title: "Lehenga",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "20000"
         }
       ]
     };
@@ -246,6 +166,17 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     }
+  },
+  components: {
+    Product
+  },
+
+  async asyncData({ params, app }) {
+    let response = await app.$axios.$get(`products?category=${params.slug}`);
+
+    return {
+      products: response.data
+    };
   }
 };
 </script>

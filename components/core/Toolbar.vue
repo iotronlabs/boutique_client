@@ -7,18 +7,13 @@
       <v-container fluid px-0>
         <v-row no-gutters>
           <v-col class="d-flex align-center">
-            <v-img
-              src="/butiq.png"
-              contain
-              height="90"
-              width="90"
-              max-width="90"
-              @click="$vuetify.goTo(0)"
-            />
+            <nuxt-link :to="{ name: 'index'}">
+              <v-img src="/butiq.png" contain height="90" width="90" max-width="90" />
+            </nuxt-link>
             <!-- nav categories -->
             <v-col class="hidden-sm-and-down">
               <v-col class="d-flex align-center mx-2">
-                <v-col v-for="category in categories.data" :key="category">
+                <v-col v-for="category in categories.data" :key="category.slug">
                   <v-menu
                     open-on-hover
                     :close-on-content-click="false"
@@ -34,12 +29,17 @@
                       <v-row class="mx-5">
                         <v-col cols="4" v-for="children in category.children" :key="children">
                           <!-- <v-hover v-slot:default="{ hover }" value="true"> -->
+
                           <v-row class="my-3">
-                            <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
+                            <nuxt-link :to="{ name: ''}">
+                              <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
+                            </nuxt-link>
                           </v-row>
 
                           <v-row v-for="subchildren in children.children" :key="subchildren">
-                            <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
+                            <nuxt-link :to="{ name: 'index'}">
+                              <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
+                            </nuxt-link>
                           </v-row>
                         </v-col>
                       </v-row>

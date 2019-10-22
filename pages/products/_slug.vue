@@ -7,10 +7,11 @@
         </v-col>
         <v-col cols="6">
           <p class="font-weight-medium">{{product.name}}</p>
-          <p>{{product.description}}</p>
           <v-div>
             <v-rating v-model="rating"></v-rating>
           </v-div>
+          <p>{{product.description}}</p>
+
           <br />
           <v-row>
             <v-col
@@ -38,6 +39,13 @@
 
                                 <v-chip>{{color.data}}</v-chip>&emsp;
           </v-div>-->
+          <v-chip-group
+            v-model="selection"
+            active-class="deep-purple--text text--accent-4"
+            mandatory
+          >
+            <v-chip v-for="size in sizes" :key="size" :value="size">{{ size }}</v-chip>
+          </v-chip-group>
           <v-chip-group multiple column active-class="primary--text">
             <v-chip v-for="color in product.colors" :key="color">{{ color }}</v-chip>
           </v-chip-group>
