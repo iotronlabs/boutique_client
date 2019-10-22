@@ -33,31 +33,12 @@
                                 {{ color }}
                             </v-chip>
           </v-chip-group>-->
-
-          <p class="font-weight-bold">Colors :</p>
-          <!-- <v-div v-for = "color in colors" :key = "color">
-
-                                <v-chip>{{color.data}}</v-chip>&emsp;
-          </v-div>-->
-          <v-chip-group
-            v-model="selection"
-            active-class="deep-purple--text text--accent-4"
-            mandatory
-          >
-            <v-chip v-for="size in sizes" :key="size" :value="size">{{ size }}</v-chip>
-          </v-chip-group>
-          <v-chip-group multiple column active-class="primary--text">
-            <v-chip v-for="color in product.colors" :key="color">{{ color }}</v-chip>
-          </v-chip-group>
-
-          <p class="font-weight-bold">Size :</p>
-          <!-- <v-div v-for = "size in sizes" :key = "size">
-                           <v-chip>{{size.data}}</v-chip>&emsp;
-                            
-          </v-div>-->
-          <v-chip-group multiple column active-class="primary--text">
-            <v-chip v-for="size in product.sizes" :key="size">{{ size}}</v-chip>
-          </v-chip-group>
+          <ProductVariation
+            v-for="(variations, type) in product.variations"
+            :type="type"
+            :variations="variations"
+            :key="type"
+          />
 
           <v-row class="pa-8">
             <v-btn>Add To Bag</v-btn>
@@ -71,11 +52,16 @@
 </template>
 
 <script>
+import ProductVariation from "@/components/products/ProductVariation";
+
 export default {
   data() {
     return {
       product: null
     };
+  },
+  components: {
+    ProductVariation
   },
   async asyncData({ params, app }) {
     let response = await app.$axios.$get(`products/${params.slug}`);
