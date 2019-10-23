@@ -2,10 +2,11 @@
   <v-card tile>
     <!-- toolbar -->
     <v-toolbar class="mb-2">
-      <span class="title">{{title }}</span>
-      <span>- {{items.length}} items</span>
+      <span class="title">{{ $route.params.slug }}</span>
+      <span>- {{products.length}} item<span v-if="products.length>1">s</span></span>
 
       <div class="flex-grow-1"></div>
+	  
 
       <template v-if="$vuetify.breakpoint.mdAndUp">
         <div class="flex-grow-1"></div>
@@ -40,11 +41,12 @@
           </v-card>
         </v-col>
         <v-divider vertical inset></v-divider>
+
         <!-- products -->
         <v-col cols="12" md="8" lg="8">
           <v-card class="mx-auto pa-5" flat>
             <v-data-iterator
-              :items="items"
+              :items="products"
               :items-per-page.sync="itemsPerPage"
               :page="page"
               :sort-by="sortBy.toLowerCase()"
@@ -54,8 +56,8 @@
               <template v-slot:default="props">
                 <v-row>
                   <!-- product -->
-                  <v-col v-for="item in props.items" :key="item.name" xs="6" sm="6" md="4" lg="4">
-                    <Product :product="product" />
+                  <v-col v-for="item in props.items" :key="item.name" cols="6" sm="6" md="4" lg="4">
+                    <nuxt-link :to="`../products/${item.slug}`"><Product :product="item" /></nuxt-link>
                   </v-col>
                 </v-row>
               </template>
@@ -118,7 +120,7 @@ export default {
   data() {
     return {
       products: [],
-      title: "Men and women",
+      title: "",
       itemsPerPageArray: [3, 6, 9, 12, 15, 18],
       search: "",
       filter: {},
@@ -151,32 +153,32 @@ export default {
       ]
     };
   },
-  computed: {
-    numberOfPages() {
-      return Math.ceil(this.items.length / this.itemsPerPage);
-    }
-  },
-  methods: {
-    nextPage() {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1;
-    },
-    formerPage() {
-      if (this.page - 1 >= 1) this.page -= 1;
-    },
-    updateItemsPerPage(number) {
-      this.itemsPerPage = number;
-    }
-  },
-  components: {
-    Product
-  },
+	computed: {
+		numberOfPages() {
+			return Math.ceil(this.items.length / this.itemsPerPage);
+		}
+	},
+  	methods: {
+		nextPage() {
+			if (this.page + 1 <= this.numberOfPages) this.page += 1;
+		},
+		formerPage() {
+			if (this.page - 1 >= 1) this.page -= 1;
+		},
+		updateItemsPerPage(number) {
+			this.itemsPerPage = number;
+		}
+  	},
+  	components: {
+    	Product
+  	},
 
-  async asyncData({ params, app }) {
-    let response = await app.$axios.$get(`products?category=${params.slug}`);
-
-    return {
-      products: response.data
-    };
-  }
+	async asyncData({ params, app }) {
+		let response = await app.$axios.$get(`/products?category=${params.slug}`);
+		// this.title = params.slug
+		return {
+			products: response.data
+		};
+	}
 };
 </script>

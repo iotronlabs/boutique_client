@@ -1,8 +1,9 @@
 <template>
   <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-    <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-
-    <v-card-title></v-card-title>
+    <v-img height="200px" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+    <v-card-title>
+      {{ product.name }}<br>{{ product.price }}      
+    </v-card-title>
 
     <v-card-text>
       <v-row align="center" class="mx-0">
