@@ -173,8 +173,10 @@ export default {
 
   async asyncData({ params, app }) {
     let response = await app.$axios.$get(`products?category=${params.slug}`);
-
+    console.log(response)
     return {
+      
+      
       products: response.data
     };
   }
