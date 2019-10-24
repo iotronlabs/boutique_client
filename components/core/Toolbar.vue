@@ -22,7 +22,11 @@
                     offset-y="5"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-btn :to="{ name: 'categories-slug', params: { slug: category.slug} }" text v-on="on">{{category.name}}</v-btn>
+                      <v-btn
+                        :to="{ name: 'categories-slug', params: { slug: category.slug} }"
+                        text
+                        v-on="on"
+                      >{{category.name}}</v-btn>
                     </template>
 
                     <v-card width="600px" height="300px">
@@ -31,13 +35,17 @@
                           <!-- <v-hover v-slot:default="{ hover }" value="true"> -->
 
                           <v-row class="my-3">
-                            <nuxt-link :to="{ name: 'products-slug', params: { slug: children.slug} }">
+                            <nuxt-link
+                              :to="{ name: 'categories-slug', params: { slug: children.slug} }"
+                            >
                               <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
                             </nuxt-link>
                           </v-row>
 
                           <v-row v-for="subchildren in children.children" :key="subchildren">
-                            <nuxt-link :to="{ name: 'products-slug', params: { slug: subchildren.slug}}">
+                            <nuxt-link
+                              :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
+                            >
                               <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
                             </nuxt-link>
                           </v-row>
@@ -94,14 +102,13 @@ export default {
     };
   },
   computed: {
-    // ...mapGetters({
-    // 	categories: 'categories'
-
-    // }),
-    ...mapState({
-      items: state => state.layout.items,
-      categories: state => state.layout.categories
+    ...mapGetters({
+      categories: "layout/categories"
     })
+    //...mapState({
+
+    //  categories: state => state.layout.categories
+    //})
   },
 
   methods: {

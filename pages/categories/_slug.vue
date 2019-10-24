@@ -3,10 +3,12 @@
     <!-- toolbar -->
     <v-toolbar class="mb-2">
       <span class="title">{{ $route.params.slug }}</span>
-      <span>- {{products.length}} item<span v-if="products.length>1">s</span></span>
+      <span>
+        - {{products.length}} item
+        <span v-if="products.length>1">s</span>
+      </span>
 
       <div class="flex-grow-1"></div>
-	  
 
       <template v-if="$vuetify.breakpoint.mdAndUp">
         <div class="flex-grow-1"></div>
@@ -56,8 +58,17 @@
               <template v-slot:default="props">
                 <v-row>
                   <!-- product -->
-                  <v-col v-for="item in props.items" :key="item.name" cols="6" sm="6" md="4" lg="4">
-                    <nuxt-link :to="`../products/${item.slug}`"><Product :product="item" /></nuxt-link>
+                  <v-col
+                    v-for="product in products"
+                    :key="product.slug"
+                    cols="6"
+                    sm="6"
+                    md="4"
+                    lg="4"
+                  >
+                    <nuxt-link :to="`../products/${product.slug}`">
+                      <Product :product="product" />
+                    </nuxt-link>
                   </v-col>
                 </v-row>
               </template>
@@ -135,50 +146,35 @@ export default {
         { title: "Material" }
       ],
       keys: ["price", "title"],
-      items: [
-        {
-          src: "/kurta.jpg",
-          title: "Kurta",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "2000"
-        },
-        {
-          src: "/dress1.jpg",
-          title: "Dress",
-          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          to: "/inspire",
-          price: "2000"
-        }
-      ]
+      items: []
     };
   },
-	computed: {
-		numberOfPages() {
-			return Math.ceil(this.items.length / this.itemsPerPage);
-		}
-	},
-  	methods: {
-		nextPage() {
-			if (this.page + 1 <= this.numberOfPages) this.page += 1;
-		},
-		formerPage() {
-			if (this.page - 1 >= 1) this.page -= 1;
-		},
-		updateItemsPerPage(number) {
-			this.itemsPerPage = number;
-		}
-  	},
-  	components: {
-    	Product
-  	},
+  computed: {
+    numberOfPages() {
+      return Math.ceil(this.items.length / this.itemsPerPage);
+    }
+  },
+  methods: {
+    nextPage() {
+      if (this.page + 1 <= this.numberOfPages) this.page += 1;
+    },
+    formerPage() {
+      if (this.page - 1 >= 1) this.page -= 1;
+    },
+    updateItemsPerPage(number) {
+      this.itemsPerPage = number;
+    }
+  },
+  components: {
+    Product
+  },
 
-	async asyncData({ params, app }) {
-		let response = await app.$axios.$get(`/products?category=${params.slug}`);
-		// this.title = params.slug
-		return {
-			products: response.data
-		};
-	}
+  async asyncData({ params, app }) {
+    let response = await app.$axios.$get(`/products?category=${params.slug}`);
+    // this.title = params.slug
+    return {
+      products: response.data
+    };
+  }
 };
 </script>
