@@ -22,7 +22,11 @@
                     offset-y="5"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-btn :to="{ name: 'categories-slug', params: { slug: category.slug} }" text v-on="on">{{category.name}}</v-btn>
+                      <v-btn
+                        :to="{ name: 'categories-slug', params: { slug: category.slug} }"
+                        text
+                        v-on="on"
+                      >{{category.name}}</v-btn>
                     </template>
 
                     <v-card width="600px" height="300px">
@@ -105,14 +109,13 @@ export default {
     };
   },
   computed: {
-    // ...mapGetters({
-    // 	categories: 'categories'
-
-    // }),
-    ...mapState({
-      items: state => state.layout.items,
-      categories: state => state.layout.categories
+    ...mapGetters({
+      categories: "layout/categories"
     })
+    //...mapState({
+
+    //  categories: state => state.layout.categories
+    //})
   },
 
   methods: {
