@@ -1,5 +1,5 @@
 <template>
-  <v-card tile>
+  <v-card tile shaped>
     <!-- toolbar -->
     <v-toolbar class="mb-2">
       <span class="title">{{ $route.params.slug }}</span>
@@ -29,7 +29,7 @@
       <v-row>
         <!-- filters -->
         <v-col cols="12" md="3" lg="3">
-          <v-card class="mx-auto fill-height hidden-sm-and-down" max-width="300">
+          <v-card class="mx-auto fill-height hidden-sm-and-down" max-width="300" shaped>
             <v-list flat>
               <v-subheader>Filters</v-subheader>
               <v-list-item-group v-model="item" color="primary">

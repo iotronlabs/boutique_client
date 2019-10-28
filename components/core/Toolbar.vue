@@ -32,28 +32,26 @@
                     <v-card width="600px" height="300px">
                       <v-row class="mx-5">
                         <v-col cols="4" v-for="children in category.children" :key="children">
-                          
-
                           <v-row class="my-3">
                             <v-list flat height="30px">
-                              <v-list-item  :to="{ name: 'products-slug', params: { slug: children.slug} }">
-                              
+                              <v-list-item
+                                :to="{ name: 'categories-slug', params: { slug: children.slug} }"
+                              >
                                 <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
-                              
                               </v-list-item>
                             </v-list>
-                          
                           </v-row>
 
                           <v-row v-for="subchildren in children.children" :key="subchildren">
-                            <v-list flat  height="30px" >
-                              
-                              <v-list-item :to="{ name: 'products-slug', params: { slug: subchildren.slug}}">
-                                <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
+                            <v-list flat height="30px">
+                              <v-list-item
+                                :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
+                              >
+                                <v-list-item-subtitle
+                                  class="category-sub-child"
+                                >{{subchildren.name}}</v-list-item-subtitle>
                               </v-list-item>
-                              
                             </v-list>
-                    
                           </v-row>
                         </v-col>
                       </v-row>
@@ -73,7 +71,6 @@
                 outlined
                 rounded
                 dense
-                color="blue"
               />
             </v-col>
             <span class="hidden-sm-and-down mx-2">
@@ -104,7 +101,7 @@ export default {
   },
   data() {
     return {
-      item:1,
+      item: 1,
       hover: false
     };
   },
