@@ -28,18 +28,28 @@
                     <v-card width="600px" height="300px">
                       <v-row class="mx-5">
                         <v-col cols="4" v-for="children in category.children" :key="children">
-                          <!-- <v-hover v-slot:default="{ hover }" value="true"> -->
+                          
 
                           <v-row class="my-3">
-                            <nuxt-link :to="{ name: 'products-slug', params: { slug: children.slug} }">
-                              <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
-                            </nuxt-link>
+                            <v-list flat height="30px">
+                              <v-list-item  :to="{ name: 'products-slug', params: { slug: children.slug} }">
+                              
+                                <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
+                              
+                              </v-list-item>
+                            </v-list>
+                          
                           </v-row>
 
                           <v-row v-for="subchildren in children.children" :key="subchildren">
-                            <nuxt-link :to="{ name: 'products-slug', params: { slug: subchildren.slug}}">
-                              <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
-                            </nuxt-link>
+                            <v-list flat  height="30px" >
+                              
+                              <v-list-item :to="{ name: 'products-slug', params: { slug: subchildren.slug}}">
+                                <v-list-item-subtitle class="category-sub-child">{{subchildren.name}}</v-list-item-subtitle>
+                              </v-list-item>
+                              
+                            </v-list>
+                    
                           </v-row>
                         </v-col>
                       </v-row>
@@ -90,6 +100,7 @@ export default {
   },
   data() {
     return {
+      item:1,
       hover: false
     };
   },
@@ -115,6 +126,7 @@ export default {
 .category-sub-child:hover {
   margin-left: 2px;
   font-weight: bold;
+  color: black;
 }
 .category-child-men {
   color: purple;
