@@ -23,6 +23,11 @@ export default {
 		Drawer,
 		Footer
 	},
+	data() {
+		return {
+			authenticated: false
+		}
+	},
 	mounted() {
 		console.log('called')
 		this.initialize()
@@ -30,7 +35,11 @@ export default {
 	methods: {
 		...mapActions('layout',['callUpdateNavMenu']),
 		async initialize() {
-		console.log('called')
+			if(this.$auth.loggedIn)
+			{
+				this.authenticated = true
+			}
+			console.log('called')
 
 			await this.callUpdateNavMenu()
 		}

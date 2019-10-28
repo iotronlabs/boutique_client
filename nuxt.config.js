@@ -105,12 +105,12 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: "/login",
+            url: "/auth/login",
             method: "post",
             propertyName: "token"
-          }
-          // user: {url: '/me',method: 'get',propertyName: 'data'},
-          // logout: {url: '/api/students/out'}
+          },
+          user: {url: '/auth/me',method: 'get',propertyName: 'data'},
+          logout: {url: '/auth/out'}
         },
         tokenRequired: true,
         tokenType: "Bearer"
