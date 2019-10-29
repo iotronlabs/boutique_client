@@ -41,7 +41,7 @@
           />
 
           <v-row class="pa-8">
-            <v-btn>Add To Bag</v-btn>
+            <v-btn @click.prevent="addToCart(product)">Add To Cart</v-btn>
             <v-spacer></v-spacer>
             <v-btn>Wishlist</v-btn>
           </v-row>
@@ -52,24 +52,28 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import ProductVariation from "@/components/products/ProductVariation";
 
 export default {
-  data() {
-    return {
-      product: null
-    };
-  },
-  components: {
-    ProductVariation
-  },
-  async asyncData({ params, app }) {
-    let response = await app.$axios.$get(`products/${params.slug}`);
+	data() {
+		return {
+			product: null
+		};
+	},
+	components: {
+		ProductVariation
+	},
+	async asyncData({ params, app }) {
+		let response = await app.$axios.$get(`products/${params.slug}`);
 
-    return {
-      product: response.data
-    };
-  }
+		return {
+			product: response.data
+		};
+	},
+	methods: {
+		...mapActions('cart',['addToCart'])
+	}
 };
 </script>
 

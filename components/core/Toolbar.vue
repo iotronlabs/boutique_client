@@ -81,10 +81,13 @@
             </v-btn>
 
             <!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
-            <v-btn rounded outlined color="primary">
-              Cart
-              <v-icon right>mdi-cart</v-icon>
-            </v-btn>
+			<v-badge top>
+				<span slot="badge">{{ cartCount }}</span>
+				<v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
+				Cart
+				<v-icon right>mdi-cart</v-icon>
+				</v-btn>
+			</v-badge>
           </v-col>
         </v-row>
       </v-container>
@@ -96,28 +99,30 @@
 import { mapState, mapGetters, mapMutations } from "vuex";
 import Login from "@/components/Login";
 export default {
-  components: {
-    Login
-  },
-  data() {
-    return {
-      item: 1,
-      hover: false
-    };
-  },
-  computed: {
-    ...mapGetters({
-      categories: "layout/categories"
-    })
-    //...mapState({
+	components: {
+		Login
+	},
+	data() {
+		return {
+		item: 1,
+		hover: false
+		};
+	},
+	computed: {
+		...mapGetters({
+			categories: "layout/categories",
+			cartProducts: "cart/products",
+			cartCount: "cart/cartCount"
+		})
+		//...mapState({
 
-    //  categories: state => state.layout.categories
-    //})
-  },
+		//  categories: state => state.layout.categories
+		//})
+	},
 
-  methods: {
-    ...mapMutations("layout", ["toggleDrawer"])
-  }
+	methods: {
+		...mapMutations("layout", ["toggleDrawer"])
+	}
 };
 </script>
 
