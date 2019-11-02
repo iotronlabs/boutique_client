@@ -1,38 +1,17 @@
 <template>
-  <v-card class="mx-auto" height="550">
+  <v-card class="mx-auto">
     <v-container fluid>
       <v-row>
-        <v-col cols="6">
+        <v-col cols="12" md="6" lg="6">
           <v-img height="500" src="/man.jpg"></v-img>
         </v-col>
-        <v-col cols="6">
-          <p class="font-weight-medium">{{product.name}}</p>
-          <v-div>
-            <v-rating v-model="rating"></v-rating>
-          </v-div>
+        <v-col cols="12" md="6" lg="6">
+          <p class="title">{{product.name}}</p>
+          <v-divider class="mt-n3 mb-1"></v-divider>
+          <p class="headline">{{product.price}}</p>
+
           <p>{{product.description}}</p>
 
-          <br />
-          <v-row>
-            <v-col
-              cols="12"
-              xs="6"
-              sm="6"
-              md="3"
-              lg="3"
-              class="font-weight-bold"
-            >Price : {{product.price}}</v-col>
-            <v-col cols="12" xs="6" sm="6" md="3" lg="3">{{product.oprice}}</v-col>
-          </v-row>
-          <!-- <v-chip-group
-                        multiple
-                        column
-                        active-class="primary--text"
-                        >
-                            <v-chip v-for="color in colors" :key="color">
-                                {{ color }}
-                            </v-chip>
-          </v-chip-group>-->
           <ProductVariation
             v-for="(variations, type) in product.variations"
             :type="type"
@@ -52,28 +31,28 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 import ProductVariation from "@/components/products/ProductVariation";
 
 export default {
-	data() {
-		return {
-			product: null
-		};
-	},
-	components: {
-		ProductVariation
-	},
-	async asyncData({ params, app }) {
-		let response = await app.$axios.$get(`products/${params.slug}`);
+  data() {
+    return {
+      product: null
+    };
+  },
+  components: {
+    ProductVariation
+  },
+  async asyncData({ params, app }) {
+    let response = await app.$axios.$get(`products/${params.slug}`);
 
-		return {
-			product: response.data
-		};
-	},
-	methods: {
-		...mapActions('cart',['addToCart'])
-	}
+    return {
+      product: response.data
+    };
+  },
+  methods: {
+    ...mapActions("cart", ["addToCart"])
+  }
 };
 </script>
 

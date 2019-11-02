@@ -12,7 +12,7 @@
             </nuxt-link>
             <!-- nav categories -->
             <v-col class="hidden-sm-and-down">
-              <v-col class="d-flex align-center mx-2">
+              <v-col class="d-flex align-center">
                 <v-col v-for="category in categories.data" :key="category.slug">
                   <v-menu
                     open-on-hover
@@ -25,14 +25,15 @@
                       <v-btn
                         :to="{ name: 'categories-slug', params: { slug: category.slug} }"
                         text
+                        rounded
                         v-on="on"
                       >{{category.name}}</v-btn>
                     </template>
 
                     <v-card width="600px" height="300px">
-                      <v-row class="mx-5">
+                      <v-row class="mx-2">
                         <v-col cols="4" v-for="children in category.children" :key="children">
-                          <v-row class="my-3">
+                          <v-row>
                             <v-list flat height="30px">
                               <v-list-item
                                 :to="{ name: 'categories-slug', params: { slug: children.slug} }"
@@ -81,13 +82,13 @@
             </v-btn>
 
             <!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
-			<v-badge top>
-				<span slot="badge">{{ cartCount }}</span>
-				<v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
-				Cart
-				<v-icon right>mdi-cart</v-icon>
-				</v-btn>
-			</v-badge>
+            <v-badge overlap>
+              <span slot="badge">{{ cartCount }}</span>
+              <v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
+                Cart
+                <v-icon right>mdi-cart</v-icon>
+              </v-btn>
+            </v-badge>
           </v-col>
         </v-row>
       </v-container>
@@ -99,30 +100,30 @@
 import { mapState, mapGetters, mapMutations } from "vuex";
 import Login from "@/components/Login";
 export default {
-	components: {
-		Login
-	},
-	data() {
-		return {
-		item: 1,
-		hover: false
-		};
-	},
-	computed: {
-		...mapGetters({
-			categories: "layout/categories",
-			cartProducts: "cart/products",
-			cartCount: "cart/cartCount"
-		})
-		//...mapState({
+  components: {
+    Login
+  },
+  data() {
+    return {
+      item: 1,
+      hover: false
+    };
+  },
+  computed: {
+    ...mapGetters({
+      categories: "layout/categories",
+      cartProducts: "cart/products",
+      cartCount: "cart/cartCount"
+    })
+    //...mapState({
 
-		//  categories: state => state.layout.categories
-		//})
-	},
+    //  categories: state => state.layout.categories
+    //})
+  },
 
-	methods: {
-		...mapMutations("layout", ["toggleDrawer"])
-	}
+  methods: {
+    ...mapMutations("layout", ["toggleDrawer"])
+  }
 };
 </script>
 

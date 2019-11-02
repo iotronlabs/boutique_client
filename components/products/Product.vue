@@ -1,19 +1,13 @@
 <template>
-  <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-    <v-img height="200px" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-    <v-card-title>
-      {{ product.name }}<br>{{ product.price }}      
-    </v-card-title>
+  <v-card :to="link" :loading="loading" class="mx-auto my-6" shaped>
+    <v-img height="200px" src="https://cdn.vuetifyjs.com/images/cards/cooking.png">
+      <v-btn icon color="primary" large>
+        <v-icon>mdi-bookmark</v-icon>
+      </v-btn>
+    </v-img>
 
-    <v-card-text>
-      <v-row align="center" class="mx-0">
-        <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
-
-        <div class="grey--text ml-4">4.5 (413)</div>
-      </v-row>
-    </v-card-text>
-
-    <v-divider class="mx-4"></v-divider>
+    <v-card-title class="subtitle-2">{{ product.name }}</v-card-title>
+    <v-card-subtitle>{{ product.price }}</v-card-subtitle>
   </v-card>
 </template>
 

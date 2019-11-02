@@ -1,32 +1,38 @@
 <template>
   <v-card tile shaped>
     <!-- toolbar -->
-    <v-toolbar class="mb-2">
-      <span class="title">{{ $route.params.slug }}</span>
-      <span>
-        - {{products.length}} item
-        <span v-if="products.length>1">s</span>
-      </span>
+    <v-toolbar flat>
+      <v-row>
+        <v-col>
+          <span class="title">{{ $route.params.slug }}</span>
+          <span>
+            - {{products.length}} item
+            <span v-if="products.length>1">s</span>
+          </span>
+        </v-col>
 
-      <div class="flex-grow-1"></div>
-
-      <template v-if="$vuetify.breakpoint.mdAndUp">
         <div class="flex-grow-1"></div>
+        <template v-if="$vuetify.breakpoint.mdAndUp">
+          <v-col>
+            <div class="flex-grow-1"></div>
 
-        <!-- sort by -->
-        <v-select
-          v-model="sortBy"
-          text
-          prefix="Sort by:   "
-          solo-inverted
-          hide-details
-          :items="keys"
-        ></v-select>
-      </template>
+            <!-- sort by -->
+            <v-select
+              v-model="sortBy"
+              text
+              prefix="Sort by:"
+              outlined
+              dense
+              hide-details
+              :items="keys"
+            ></v-select>
+          </v-col>
+        </template>
+      </v-row>
     </v-toolbar>
 
     <v-container fluid>
-      <v-row>
+      <v-row no-gutters>
         <!-- filters -->
         <v-col cols="12" md="3" lg="3">
           <v-card class="mx-auto fill-height hidden-sm-and-down" max-width="300" shaped>
@@ -42,11 +48,11 @@
             </v-list>
           </v-card>
         </v-col>
-        <v-divider vertical inset></v-divider>
+        <v-divider vertical inset class="mx-2"></v-divider>
 
         <!-- products -->
         <v-col cols="12" md="8" lg="8">
-          <v-card class="mx-auto pa-5" flat>
+          <v-card class="mx-auto" flat>
             <v-data-iterator
               :items="products"
               :items-per-page.sync="itemsPerPage"
@@ -56,7 +62,7 @@
               hide-default-footer
             >
               <template v-slot:default="props">
-                <v-row>
+                <v-row no-gutters>
                   <!-- product -->
                   <v-col
                     v-for="product in products"
@@ -66,9 +72,7 @@
                     md="4"
                     lg="4"
                   >
-                    <nuxt-link :to="`../products/${product.slug}`">
-                      <Product :product="product" />
-                    </nuxt-link>
+                    <Product :product="product" />
                   </v-col>
                 </v-row>
               </template>
