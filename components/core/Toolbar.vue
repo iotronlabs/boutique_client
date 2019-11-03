@@ -34,7 +34,7 @@
                       <v-row class="mx-2">
                         <v-col cols="4" v-for="children in category.children" :key="children">
                           <v-row>
-                            <v-list flat height="30px">
+                            <v-list flat dense height="30px" rounded>
                               <v-list-item
                                 :to="{ name: 'categories-slug', params: { slug: children.slug} }"
                               >
@@ -44,7 +44,7 @@
                           </v-row>
 
                           <v-row v-for="subchildren in children.children" :key="subchildren">
-                            <v-list flat height="30px">
+                            <v-list flat dense height="30px" rounded>
                               <v-list-item
                                 :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
                               >
@@ -135,9 +135,8 @@ export default {
 
 <style scoped>
 .category-sub-child:hover {
-  margin-left: 2px;
-  font-weight: bold;
-  color: black;
+  font-weight: medium;
+  color: purple;
 }
 .category-child-men {
   color: purple;

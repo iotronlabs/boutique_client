@@ -21,8 +21,8 @@
 
         <v-list-group v-for="item in categories.data" :key="item">
           <template v-slot:activator>
-            <v-list-item-avatar v-if="avatar">
-              <v-img :src="item.avatar"></v-img>
+            <v-list-item-avatar>
+              <v-img src="/icon.png"></v-img>
             </v-list-item-avatar>
             <v-list-item-title>{{item.name}}</v-list-item-title>
           </template>
