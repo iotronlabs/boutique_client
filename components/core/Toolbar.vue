@@ -122,7 +122,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations("layout", ["toggleDrawer"])
+    ...mapMutations("layout", ["toggleDrawer"]),
+    onClick(e, item) {
+      e.stopPropagation();
+      if (item.to || !item.href) return;
+      this.$vuetify.goTo(item.href);
+    }
   }
 };
 </script>

@@ -1,6 +1,6 @@
 export default {
-    categories (state) {
-        console.log('getters')
+    categories(state) {
+
         return state.categories
     }
 }
