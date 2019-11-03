@@ -9,21 +9,57 @@
           <p class="title">{{product.name}}</p>
           <v-divider class="mt-n3 mb-1"></v-divider>
           <p class="headline">{{product.price}}</p>
+          <p v-if="!product.in_stock">Out of Stock</p>
+          <v-row>
+            <form action>
+              <ProductVariation
+                v-for="(variations, type) in product.variations"
+                :type="type"
+                :variations="variations"
+                :key="type"
+                v-model="form.variation"
+              />
+            </form>
+          </v-row>
 
           <p>{{product.description}}</p>
-
-          <ProductVariation
-            v-for="(variations, type) in product.variations"
-            :type="type"
-            :variations="variations"
-            :key="type"
-          />
-
-          <v-row class="pa-8">
-            <v-btn @click.prevent="addToCart(product)">Add To Cart</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn>Wishlist</v-btn>
+          <v-row no-gutters class="hidden-md-and-down">
+            <v-col>
+              <v-btn block class="mr-1" color="primary" @click.prevent="addToCart(product)">
+                Add To Cart
+                <v-icon right>mdi-cart</v-icon>
+              </v-btn>
+            </v-col>
+            <v-col>
+              <v-btn block color="primary" outlined class="ml-1">
+                Wishlist
+                <v-icon right>mdi-bookmark</v-icon>
+              </v-btn>
+            </v-col>
           </v-row>
+          <v-row>
+            <v-col>
+              <v-rating v-model="rating" color="primary" dense half-increments hover size="25"></v-rating>
+            </v-col>
+          </v-row>
+          <v-app-bar bottom fixed class="hidden-md-and-up">
+            <v-container class="px-0 py-0">
+              <v-row no-gutters>
+                <v-col>
+                  <v-btn block class="mr-1" color="primary" @click.prevent="addToCart(product)">
+                    Add To Cart
+                    <v-icon right>mdi-cart</v-icon>
+                  </v-btn>
+                </v-col>
+                <v-col>
+                  <v-btn block color="primary" outlined class="ml-1">
+                    Wishlist
+                    <v-icon right>mdi-bookmark</v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-app-bar>
         </v-col>
       </v-row>
     </v-container>
@@ -37,7 +73,11 @@ import ProductVariation from "@/components/products/ProductVariation";
 export default {
   data() {
     return {
-      product: null
+      product: null,
+      form: {
+        variation: null,
+        quantity: 1
+      }
     };
   },
   components: {

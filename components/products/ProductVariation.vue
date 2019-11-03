@@ -1,16 +1,26 @@
 <template>
   <v-container>
     <v-chip-group active-class="primary--text">
-      <v-chip v-for="variation in variations" :key="variation.type">{{ type }}</v-chip>
+      <v-chip>{{ type }}</v-chip>
     </v-chip-group>
 
-    <v-chip-group active-class="primary--text">
-      <v-chip v-for="variation in variations" :key="variation.id">{{ variation.name }}</v-chip>
+    <v-chip-group v-model="selection" active-class="primary--text" @change="changed($event, type)">
+      <v-chip
+        filter
+        v-for="variation in variations"
+        :key="variation.id"
+        :value="variation.id"
+        :disabled="!variation.in_stock"
+      >{{ variation.name }}</v-chip>
     </v-chip-group>
+    <!--<template v-if="!variation.in_stock">Out of Stock</template>-->
   </v-container>
 </template>
 <script>
 export default {
+  data: () => ({
+    //selection: this.selectedVariationId
+  }),
   props: {
     type: {
       required: true,
