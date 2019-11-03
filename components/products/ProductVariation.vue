@@ -19,7 +19,7 @@
 <script>
 export default {
   data: () => ({
-    //selection: this.selectedVariationId
+    selection: ""
   }),
   props: {
     type: {
