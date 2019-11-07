@@ -3,8 +3,8 @@ export default {
 		commit
 	}) {
 		console.log('called')
-		const response = await this.$axios.get('/categories')
-		commit('setNavMenu', response.data)
+		const response = await this.$axios.$get('/categories')
+		commit('setNavMenu', response)
 	},
 
 }

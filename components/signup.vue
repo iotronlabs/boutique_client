@@ -159,7 +159,7 @@
 		},
 		async register() {
 			console.log('register user')
-			const response = await this.$axios.post('/register',{
+			const response = await this.$axios.post('/auth/register',{
 				email: this.email,
 				password: this.password,
 				name: this.name,

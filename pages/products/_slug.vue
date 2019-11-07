@@ -23,7 +23,7 @@
           </v-row>
 
           <p>{{product.description}}</p>
-          <v-row no-gutters class="hidden-md-and-down">
+          <v-row no-gutters class="hidden-sm-and-down">
             <v-col>
               <v-btn block class="mr-1" color="primary" @click.prevent="addToCart(product)">
                 Add To Cart

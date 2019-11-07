@@ -38,7 +38,7 @@
                               <v-list-item
                                 :to="{ name: 'categories-slug', params: { slug: children.slug} }"
                               >
-                                <v-list-item-title class="category-child-men">{{children.name}}</v-list-item-title>
+                                <v-list-item-title class="primary--text">{{children.name}}</v-list-item-title>
                               </v-list-item>
                             </v-list>
                           </v-row>
@@ -138,10 +138,7 @@ export default {
   font-weight: medium;
   color: purple;
 }
-.category-child-men {
-  color: purple;
-  font-weight: bold;
-}
+
 .category-child-women {
   color: red;
   font-weight: bold;
