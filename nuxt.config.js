@@ -101,9 +101,9 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: "/auth/login",
-            method: "post",
-            propertyName: "token"
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'meta.token'
           },
           user: {
             url: '/auth/me',
@@ -111,7 +111,8 @@ export default {
             propertyName: 'data'
           },
           logout: {
-            url: '/auth/out'
+            url: '/auth/logout',
+            method: 'get'
           }
         },
         tokenRequired: true,
@@ -124,12 +125,12 @@ export default {
       },
       google: {
         client_id: "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
-      }
-      // 'laravel.passport': {
-      // 	url: '/login',
-      // 	client_id: '5',
-      // 	client_secret: 'lE5INGyNYThi92zXkJKxQjOqBoVdTJoH9hmR8PAU'
-      // },
+      },
+      'laravel.passport': {
+      	url: '/auth/login',
+      	client_id: '1',
+      	client_secret: 'qncrYUzAv4Qdtj6A0Z6yiYVLRj88yZztq13PRUy5'
+      },
     }
   },
 

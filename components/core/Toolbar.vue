@@ -74,21 +74,55 @@
                 dense
               />
             </v-col>
-            <span class="hidden-sm-and-down mx-2">
+            <span class="hidden-sm-and-down mx-2" v-if="$auth.loggedIn==false">
               <Login />
             </span>
             <v-btn class="hidden-md-and-up mr-2" small outlined fab color="primary">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
 
-            <!-- <v-btn color="primary" dark class="hidden-sm-and-down">Login</v-btn> -->
-            <v-badge overlap>
-              <span slot="badge">{{ cartCount }}</span>
-              <v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
-                Cart
-                <v-icon right>mdi-cart</v-icon>
-              </v-btn>
-            </v-badge>
+			<!-- Account button -->
+			<div v-if="$auth.loggedIn">
+				<v-menu bottom offset-y>
+					<template v-slot:activator="{ on }">
+						<v-btn
+							color="primary"
+							dark
+							v-on="on"
+							icon
+						>
+						<v-icon>mdi-account</v-icon>
+						</v-btn>
+					</template>
+
+					<v-list>
+						<v-list-item
+						v-for="(item, index) in menus"
+						:key="index"
+						@click.prevent="item.title == 'Logout' ? logoutUser() : ''"
+						:to="item.to != undefined ? item.to : '' "
+						>
+							<v-list-item-title>
+								<v-icon>{{ item.icon }}</v-icon>
+								{{ item.title }}
+							</v-list-item-title>
+						</v-list-item>
+					</v-list>
+					</v-menu>
+			</div>
+
+			<!-- Cart button -->
+            <div v-if="$auth.loggedIn==true">
+				<v-badge overlap>
+				<span slot="badge">{{ cartCount }}</span>
+				<v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
+					Cart
+					<v-icon right>mdi-cart</v-icon>
+				</v-btn>
+				</v-badge>
+            </div>
+
+			
           </v-col>
         </v-row>
       </v-container>
@@ -100,35 +134,48 @@
 import { mapState, mapGetters, mapMutations } from "vuex";
 import Login from "@/components/Login";
 export default {
-  components: {
-    Login
-  },
-  data() {
-    return {
-      item: 1,
-      hover: false
-    };
-  },
-  computed: {
-    ...mapGetters({
-      categories: "layout/categories",
-      cartProducts: "cart/products",
-      cartCount: "cart/cartCount"
-    })
-    //...mapState({
+	components: {
+		Login
+	},
+	data() {
+		return {
+			item: 1,
+			hover: false,
+			menus: [
+				{ icon: '', title: 'Profile', to: 'profile', click: ''},
+				{ icon: '', title: 'Orders', to: 'orders', click: ''},
+				{ icon: '', title: 'Wishlist', to: 'wishlist', click: ''},
+				{ icon: '', title: 'Logout', click: 'logoutUser'}
+			]
+		};
+	},
+	computed: {
+		...mapGetters({
+			categories: "layout/categories",
+			cartProducts: "cart/products",
+			cartCount: "cart/cartCount"
+			// authenticated: "user/getAuthentication"
+		})
+		//...mapState({
 
-    //  categories: state => state.layout.categories
-    //})
-  },
+		//  categories: state => state.layout.categories
+		//})
+	},
 
-  methods: {
-    ...mapMutations("layout", ["toggleDrawer"]),
-    onClick(e, item) {
-      e.stopPropagation();
-      if (item.to || !item.href) return;
-      this.$vuetify.goTo(item.href);
-    }
-  }
+	methods: {
+		...mapMutations("layout", ["toggleDrawer"]),
+		onClick(e, item) {
+			e.stopPropagation();
+			if (item.to || !item.href) return;
+			this.$vuetify.goTo(item.href);
+		},
+		async logoutUser() {
+			await this.$auth.logout()
+			.then(() => {
+				this.$router.push('/');
+			});
+		}
+	}
 };
 </script>
 

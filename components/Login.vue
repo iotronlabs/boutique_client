@@ -132,10 +132,10 @@ export default {
 			this.checkLogin()
 		},
 		checkLogin() {
+			console.log(this.$auth.user)
 			if(this.$auth.loggedIn)
 			{
 				this.dialog=false
-				console.log('Logged In')
 			}
 			else
 			{

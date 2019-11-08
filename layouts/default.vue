@@ -25,22 +25,16 @@ export default {
 	},
 	data() {
 		return {
-			authenticated: false
+			
 		}
 	},
 	mounted() {
-		console.log('called')
 		this.initialize()
 	},
 	methods: {
 		...mapActions('layout',['callUpdateNavMenu']),
 		async initialize() {
-			if(this.$auth.loggedIn)
-			{
-				this.authenticated = true
-			}
-			console.log('called')
-
+			
 			await this.callUpdateNavMenu()
 		}
 	}

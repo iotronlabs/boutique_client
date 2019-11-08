@@ -3,7 +3,7 @@
     <v-list shaped>
       <v-list-item>
         <!-- <v-btn color="primary" dark>Login</v-btn> -->
-        <Login />
+        <div v-if="$auth.loggedIn==false"><Login /></div>
       </v-list-item>
 
       <v-subheader>Categories</v-subheader>
