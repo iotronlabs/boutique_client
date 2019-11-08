@@ -81,48 +81,41 @@
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
 
-			<!-- Account button -->
-			<div v-if="$auth.loggedIn">
-				<v-menu bottom offset-y>
-					<template v-slot:activator="{ on }">
-						<v-btn
-							color="primary"
-							dark
-							v-on="on"
-							icon
-						>
-						<v-icon>mdi-account</v-icon>
-						</v-btn>
-					</template>
+            <!-- Account button -->
+            <div v-if="$auth.loggedIn" class="mr-2">
+              <v-menu bottom offset-y>
+                <template v-slot:activator="{ on }">
+                  <v-btn color="primary" dark v-on="on" icon>
+                    <v-icon>mdi-account</v-icon>
+                  </v-btn>
+                </template>
 
-					<v-list>
-						<v-list-item
-						v-for="(item, index) in menus"
-						:key="index"
-						@click.prevent="item.title == 'Logout' ? logoutUser() : ''"
-						:to="item.to != undefined ? item.to : '' "
-						>
-							<v-list-item-title>
-								<v-icon>{{ item.icon }}</v-icon>
-								{{ item.title }}
-							</v-list-item-title>
-						</v-list-item>
-					</v-list>
-					</v-menu>
-			</div>
-
-			<!-- Cart button -->
-            <div v-if="$auth.loggedIn==true">
-				<v-badge overlap>
-				<span slot="badge">{{ cartCount }}</span>
-				<v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
-					Cart
-					<v-icon right>mdi-cart</v-icon>
-				</v-btn>
-				</v-badge>
+                <v-list>
+                  <v-list-item
+                    v-for="(item, index) in menus"
+                    :key="index"
+                    @click.prevent="item.title == 'Logout' ? logoutUser() : ''"
+                    :to="item.to != undefined ? item.to : '' "
+                  >
+                    <v-list-item-title>
+                      <v-icon class="mr-2">{{ item.icon }}</v-icon>
+                      {{ item.title }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
             </div>
 
-			
+            <!-- Cart button -->
+            <div v-if="$auth.loggedIn==true">
+              <v-badge overlap>
+                <span slot="badge">{{ cartCount }}</span>
+                <v-btn :to="{ name: 'cart'}" rounded outlined color="primary">
+                  Cart
+                  <v-icon right>mdi-cart</v-icon>
+                </v-btn>
+              </v-badge>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -134,48 +127,62 @@
 import { mapState, mapGetters, mapMutations } from "vuex";
 import Login from "@/components/Login";
 export default {
-	components: {
-		Login
-	},
-	data() {
-		return {
-			item: 1,
-			hover: false,
-			menus: [
-				{ icon: '', title: 'Profile', to: 'profile', click: ''},
-				{ icon: '', title: 'Orders', to: 'orders', click: ''},
-				{ icon: '', title: 'Wishlist', to: 'wishlist', click: ''},
-				{ icon: '', title: 'Logout', click: 'logoutUser'}
-			]
-		};
-	},
-	computed: {
-		...mapGetters({
-			categories: "layout/categories",
-			cartProducts: "cart/products",
-			cartCount: "cart/cartCount"
-			// authenticated: "user/getAuthentication"
-		})
-		//...mapState({
+  components: {
+    Login
+  },
+  data() {
+    return {
+      item: 1,
+      hover: false,
+      menus: [
+        {
+          icon: "mdi-home-account",
+          title: "Profile",
+          to: "profile",
+          click: ""
+        },
+        {
+          icon: "mdi-clipboard-list",
+          title: "Orders",
+          to: "orders",
+          click: ""
+        },
+        {
+          icon: "mdi-bookmark-multiple",
+          title: "Wishlist",
+          to: "wishlist",
+          click: ""
+        },
+        { icon: "mdi-logout", title: "Logout", click: "logoutUser" }
+      ]
+    };
+  },
+  computed: {
+    ...mapGetters({
+      categories: "layout/categories",
+      cartProducts: "cart/products",
+      cartCount: "cart/cartCount"
+      // authenticated: "user/getAuthentication"
+    })
+    //...mapState({
 
-		//  categories: state => state.layout.categories
-		//})
-	},
+    //  categories: state => state.layout.categories
+    //})
+  },
 
-	methods: {
-		...mapMutations("layout", ["toggleDrawer"]),
-		onClick(e, item) {
-			e.stopPropagation();
-			if (item.to || !item.href) return;
-			this.$vuetify.goTo(item.href);
-		},
-		async logoutUser() {
-			await this.$auth.logout()
-			.then(() => {
-				this.$router.push('/');
-			});
-		}
-	}
+  methods: {
+    ...mapMutations("layout", ["toggleDrawer"]),
+    onClick(e, item) {
+      e.stopPropagation();
+      if (item.to || !item.href) return;
+      this.$vuetify.goTo(item.href);
+    },
+    async logoutUser() {
+      await this.$auth.logout().then(() => {
+        this.$router.push("/");
+      });
+    }
+  }
 };
 </script>
 

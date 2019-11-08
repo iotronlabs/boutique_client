@@ -127,9 +127,9 @@ export default {
         client_id: "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
       },
       'laravel.passport': {
-      	url: '/auth/login',
-      	client_id: '1',
-      	client_secret: 'qncrYUzAv4Qdtj6A0Z6yiYVLRj88yZztq13PRUy5'
+        url: '/auth/login',
+        client_id: '1',
+        client_secret: 'qncrYUzAv4Qdtj6A0Z6yiYVLRj88yZztq13PRUy5'
       },
     }
   },
@@ -146,7 +146,7 @@ export default {
       themes: {
         light: {
           primary: colors.deepPurple.base,
-          accent: colors.grey.darken3,
+          accent: colors.grey.darken1,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
@@ -155,7 +155,7 @@ export default {
         },
         dark: {
           primary: colors.purple.lighten2,
-          accent: colors.grey.darken3,
+          accent: colors.grey.lighten1,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,

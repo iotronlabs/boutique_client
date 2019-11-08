@@ -19,7 +19,7 @@
 
     <v-divider class="hidden-md-and-up"></v-divider>
     <br />
-    <h1 class="display-1">#featured</h1>
+    <h1 class="display-1 accent--text">#featured</h1>
 
     <v-layout row wrap>
       <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
