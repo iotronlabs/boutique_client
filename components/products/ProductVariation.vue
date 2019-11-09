@@ -1,16 +1,18 @@
 <template>
   <v-container>
-    <v-chip-group active-class="primary--text">
-      <v-chip>{{ type }}</v-chip>
+    <v-chip-group active-class="primary--text" >
+      <v-chip :value="type" disabled>{{ type }}</v-chip>
     </v-chip-group>
 
-    <v-chip-group v-model="selection" active-class="primary--text" @change="changed($event, type)">
+    <v-chip-group v-model="selection"  @change="changed($event, type)" >
       <v-chip
-        filter
+    
         v-for="variation in variations"
         :key="variation.id"
         :value="variation.id"
-        :disabled="!variation.in_stock"
+        :disabled="!variation.in_stock "
+		:filter="active"
+		
       >{{ variation.name }}</v-chip>
     </v-chip-group>
     <!--<template v-if="!variation.in_stock">Out of Stock</template>-->
@@ -24,7 +26,7 @@ export default {
   props: {
     type: {
       required: true,
-      type: Array
+      type: String
     },
     variations: {
       required: true,
@@ -33,7 +35,15 @@ export default {
     value: {
       required: false,
       default: ""
-    }
+	},
+	disabled: {
+		required: true,
+		type: Boolean
+	},
+	active: {
+		required: true,
+		type: Boolean
+	}
   },
 
   computed: {
@@ -48,7 +58,7 @@ export default {
 
   methods: {
     changed(event, type) {
-      this.$emit("input", this.findVariation(event.target.value));
+      this.$emit("input", { variation: this.selection!=undefined ? this.findVariation(event) : '', type: this.selection!=undefined ? type : ''});
     },
 
     findVariation(id) {
@@ -59,7 +69,13 @@ export default {
       }
 
       return variation;
-    }
+	},
+	selectType(event) {
+		this.$emit('selectType', event)
+	},
+	checkSelection(event) {
+		return event!=undefined ? true : false
+	}
   }
 };
 </script>
