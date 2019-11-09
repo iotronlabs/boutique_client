@@ -146,7 +146,7 @@ export default {
       themes: {
         light: {
           primary: colors.deepPurple.base,
-          accent: colors.grey.darken1,
+          accent: colors.grey.darken2,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
