@@ -11,15 +11,18 @@
           <p class="headline">{{product.price}}</p>
           <p v-if="!product.in_stock">Out of Stock</p>
           <v-row>
-            <form action>
+            <!-- <form action> -->
               <ProductVariation
                 v-for="(variations, type) in product.variations"
                 :type="type"
                 :variations="variations"
                 :key="type"
-                v-model="form.variation"
+                @selectType="setType"
+                @input="setVariationId"
+                :disabled="type!=form.type && form.type!=null"
+                :active="form.type != type  ? false : true  "
               />
-            </form>
+            <!-- </form> -->
           </v-row>
 
           <p>{{product.description}}</p>
@@ -75,7 +78,9 @@ export default {
     return {
       product: null,
       form: {
+        id: '',
         variation: null,
+        type: null,
         quantity: 1
       }
     };
@@ -91,8 +96,26 @@ export default {
     };
   },
   methods: {
-    ...mapActions("cart", ["addToCart"])
-  }
+    ...mapActions("cart", ["addToCart"]),
+    setType(type) {
+      this.form.type = type!=undefined ? type : null ;
+      // console.log(this.form.type)
+    },
+    setVariationId(payload) {
+      this.form.type = payload.type
+      this.form.variation = payload.variation
+      if(payload.variation.id == undefined)
+      {
+        this.form.id = ''
+      }
+      else
+      {
+        this.form.id = payload.variation.id
+      }
+      console.log(this.form.type);
+      console.log(this.form.id)
+    }
+  },
 };
 </script>
 

@@ -28,6 +28,7 @@
                         text
                         rounded
                         v-on="on"
+                        color="accent"
                       >{{category.name}}</v-btn>
                     </template>
 
@@ -99,7 +100,7 @@
                     :to="item.to != undefined ? item.to : '' "
                   >
                     <v-list-item-title>
-                      <v-icon class="mr-2">{{ item.icon }}</v-icon>
+                      <v-icon class="mr-2" color="primary">{{ item.icon }}</v-icon>
                       {{ item.title }}
                     </v-list-item-title>
                   </v-list-item>
@@ -133,7 +134,6 @@ export default {
   },
   data() {
     return {
-      item: 1,
       hover: false,
       menus: [
         {
