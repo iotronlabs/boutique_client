@@ -8,21 +8,6 @@
     to='/'
 
   >
-     <!-- <v-img
-         class="white--text hidden-md-and-up "
-         max-width="150"
-         max-height="300"
-         src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-      >
-
-        <v-card-title class="align-end">    
-            <div>{{title}}</div> <v-spacer></v-spacer>
-            <span>{{desp}}</span>
-        </v-card-title>
-      </v-img> -->
-    
-
-
     <div >
     <v-img
        class="mx-auto"

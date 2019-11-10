@@ -22,8 +22,9 @@
                     offset-y="5"
                   >
                     <template v-slot:activator="{ on }">
+                      <!--slug in name:'category-slug' is taking the value of slug defined in "params: { slug: category.slug, name: category}" -->
                       <v-btn
-                        :to="{ name: 'categories-slug', params: { slug: category.slug} }"
+                        :to="{ name: 'category-slug', params: { slug: category.slug, category: category} }"
                         text
                         rounded
                         v-on="on"
@@ -32,25 +33,25 @@
 
                     <v-card width="600px" height="300px">
                       <v-row class="mx-2">
-                        <v-col cols="4" v-for="children in category.children" :key="children">
+                        <v-col cols="4" v-for="subcategory in category.children" :key="subcategory">
                           <v-row>
                             <v-list flat dense height="30px" rounded>
                               <v-list-item
-                                :to="{ name: 'categories-slug', params: { slug: children.slug} }"
+                                :to="{ name: 'categories-slug', params: { slug: subcategory.slug} }"
                               >
-                                <v-list-item-title class="primary--text">{{children.name}}</v-list-item-title>
+                                <v-list-item-title class="primary--text">{{subcategory.name}}</v-list-item-title>
                               </v-list-item>
                             </v-list>
                           </v-row>
 
-                          <v-row v-for="subchildren in children.children" :key="subchildren">
+                          <v-row v-for="product in subcategory.children" :key="product">
                             <v-list flat dense height="30px" rounded>
                               <v-list-item
-                                :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
+                                :to="{ name: 'categories-slug', params: { slug: product.slug}}"
                               >
                                 <v-list-item-subtitle
                                   class="category-sub-child"
-                                >{{subchildren.name}}</v-list-item-subtitle>
+                                >{{product.name}}</v-list-item-subtitle>
                               </v-list-item>
                             </v-list>
                           </v-row>
