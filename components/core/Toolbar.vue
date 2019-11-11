@@ -50,9 +50,7 @@
                               <v-list-item
                                 :to="{ name: 'categories-slug', params: { slug: product.slug}}"
                               >
-                                <v-list-item-subtitle
-                                  class="category-sub-child"
-                                >{{product.name}}</v-list-item-subtitle>
+                                <v-list-item-subtitle class="category-sub-child">{{product.name}}</v-list-item-subtitle>
                               </v-list-item>
                             </v-list>
                           </v-row>

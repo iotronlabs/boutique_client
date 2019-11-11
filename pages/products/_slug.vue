@@ -24,8 +24,13 @@
               v-model="form.variation"
             />
             <!-- </form> -->
+            <div v-if="form.variation">
+              Quantity:
+              <select name id v-model="form.quantity">
+                <option :value="x" v-for="x in parseInt(form.variation.stock_count)" :key="x">{{x}}</option>
+              </select>
+            </div>
           </v-row>
-
           {{form}}
           <p>{{product.description}}</p>
           <v-row no-gutters class="hidden-sm-and-down">
@@ -80,12 +85,16 @@ export default {
     return {
       product: null,
       form: {
-        id: "",
         variation: null,
         type: null,
         quantity: 1
       }
     };
+  },
+  watch: {
+    "form.variation"() {
+      this.form.quantity = 1;
+    }
   },
   components: {
     ProductVariation

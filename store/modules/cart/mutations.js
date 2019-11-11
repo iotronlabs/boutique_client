@@ -1,6 +1,6 @@
 import state from './state'
 export default {
-	SET_PRODUCTS({}, payload) {
-		state.products = payload
+	SET_PRODUCTS(state, products) {
+		state.products = products
 	}
 }

@@ -6,7 +6,8 @@ const createStore = () => {
 	return new vuex.Store({
 		namespaced: true,
 		modules: {
-			layout,cart
+			layout,
+			cart
 		}
 	})
 }

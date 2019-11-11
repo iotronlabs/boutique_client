@@ -11,6 +11,7 @@
         :value="variation.id"
         :disabled="!variation.in_stock "
         :filter="active"
+        active-class="primary--text"
       >{{ variation.name }}</v-chip>
     </v-chip-group>
     <!--<template v-if="!variation.in_stock">Out of Stock</template>-->
