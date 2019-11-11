@@ -1,15 +1,31 @@
-import vuex from 'vuex'
-import layout from './modules/layout'
-import cart from './modules/cart'
+export const state = () => ({
+	categories: []
+})
 
-const createStore = () => {
-	return new vuex.Store({
-		namespaced: true,
-		modules: {
-			layout,
-			cart
-		}
-	})
+export const getters = {
+	categories(state) {
+		return state.categories
+	}
 }
 
-export default createStore
+export const mutations = {
+	SET_CATEGORIES(state, categories) {
+		state.categories = categories
+	}
+}
+
+export const actions = {
+	async callUpdateNavMenu({
+		commit,
+		dispatch
+	}) {
+		let response = await this.$axios.$get('/categories')
+
+		commit('SET_CATEGORIES', response)
+
+		if (this.$auth.loggedIn) {
+			await dispatch('cart/getCart')
+		}
+
+	}
+}

@@ -1,7 +1,12 @@
 <template>
   <v-list shaped>
     <v-list-item-group v-model="item" color="primary">
-      <v-list-item v-for="(item, i) in items" :key="i">
+      <v-list-item
+        v-for="(item, i) in items"
+        :key="i"
+        @click.prevent="item.title == 'Logout' ? logoutUser() : ''"
+        :to="item.to != undefined ? item.to : '' "
+      >
         <v-list-item-icon>
           <v-icon v-text="item.icon"></v-icon>
         </v-list-item-icon>
@@ -46,6 +51,13 @@ export default {
         { icon: "mdi-logout", title: "Logout", click: "logoutUser" }
       ]
     };
+  },
+  methods: {
+    async logoutUser() {
+      await this.$auth.logout().then(() => {
+        this.$router.push("/");
+      });
+    }
   }
 };
 </script>
