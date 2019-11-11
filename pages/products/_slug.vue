@@ -12,19 +12,21 @@
           <p v-if="!product.in_stock">Out of Stock</p>
           <v-row>
             <!-- <form action> -->
-              <ProductVariation
-                v-for="(variations, type) in product.variations"
-                :type="type"
-                :variations="variations"
-                :key="type"
-                @selectType="setType"
-                @input="setVariationId"
-                :disabled="type!=form.type && form.type!=null"
-                :active="form.type != type  ? false : true  "
-              />
+            <ProductVariation
+              v-for="(variations, type) in product.variations"
+              :type="type"
+              :variations="variations"
+              :key="type"
+              @selectType="setType"
+              @input="setVariationId"
+              :disabled="type!=form.type && form.type!=null"
+              :active="form.type != type  ? false : true  "
+              v-model="form.variation"
+            />
             <!-- </form> -->
           </v-row>
 
+          {{form}}
           <p>{{product.description}}</p>
           <v-row no-gutters class="hidden-sm-and-down">
             <v-col>
@@ -78,7 +80,7 @@ export default {
     return {
       product: null,
       form: {
-        id: '',
+        id: "",
         variation: null,
         type: null,
         quantity: 1
@@ -98,24 +100,21 @@ export default {
   methods: {
     ...mapActions("cart", ["addToCart"]),
     setType(type) {
-      this.form.type = type!=undefined ? type : null ;
+      this.form.type = type != undefined ? type : null;
       // console.log(this.form.type)
     },
     setVariationId(payload) {
-      this.form.type = payload.type
-      this.form.variation = payload.variation
-      if(payload.variation.id == undefined)
-      {
-        this.form.id = ''
-      }
-      else
-      {
-        this.form.id = payload.variation.id
+      this.form.type = payload.type;
+      this.form.variation = payload.variation;
+      if (payload.variation.id == undefined) {
+        this.form.id = "";
+      } else {
+        this.form.id = payload.variation.id;
       }
       console.log(this.form.type);
-      console.log(this.form.id)
+      console.log(this.form.id);
     }
-  },
+  }
 };
 </script>
 
