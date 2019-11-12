@@ -2,7 +2,14 @@ export const state = () => ({
     products: []
 })
 
-
+export const getters = {
+    products(state) {
+        return state.products
+    },
+    cartCount(state) {
+        return state.products.length
+    }
+}
 
 export const mutations = {
     SET_PRODUCTS(state, products) {
@@ -19,5 +26,35 @@ export const actions = {
         commit('SET_PRODUCTS', response.data.product)
 
 
-    }
+    },
+    async destroy({
+        dispatch
+    }, productId) {
+        let response = await this.$axios.$delete(`cart/${productId}`)
+
+        dispatch('getCart')
+    },
+
+    async update({
+        dispatch
+    }, {
+        productId,
+        quantity
+    }) {
+        let response = await this.$axios.$patch(`cart/${productId}`, {
+            quantity
+        })
+
+        dispatch('getCart')
+    },
+
+    async store({
+        dispatch
+    }, products) {
+        let response = await this.$axios.$post('cart', {
+            products
+        })
+
+        dispatch('getCart')
+    },
 }

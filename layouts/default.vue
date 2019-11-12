@@ -191,9 +191,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      categories: "categories"
-      // cartProducts: "products",
-      // cartCount: "cartCount"
+      categories: "categories",
+       cartProducts: "cart/products",
+       cartCount: "cart/cartCount"
       // authenticated: "user/getAuthentication"
     })
     //...mapState({
