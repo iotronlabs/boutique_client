@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-sheet class="mx-auto hidden-md-and-up" elevation="2" max-width="400">
-      <v-slide-group v-model="model">
+      <v-slide-group>
         <v-row no-gutters class="d-flex justify-center">
           <v-slide-item v-for="item in items" :key="item" v-slot:default="{ active, toggle }">
             <v-card class="mx-1 my-2" width="120" exact v-bind:to="item.to" raised outline>
@@ -37,8 +37,7 @@ export default {
           to: "/",
           sr: "art.jpg"
         }
-      ],
-      model: null
+      ]
     };
   }
 };

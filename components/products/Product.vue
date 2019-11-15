@@ -1,6 +1,6 @@
 <template>
-  <v-card :to="link" :loading="loading" class="mx-auto my-6" shaped>
-    <v-img height="200px" src="https://cdn.vuetifyjs.com/images/cards/cooking.png">
+  <v-card :to="link" :loading="loading" class="mx-auto" shaped>
+    <v-img height="250px" src="/women.jpg">
       <v-btn icon color="primary" large>
         <v-icon>mdi-bookmark</v-icon>
       </v-btn>

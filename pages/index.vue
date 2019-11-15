@@ -19,20 +19,15 @@
 
     <v-divider class="hidden-md-and-up"></v-divider>
     <br />
-    <h1 class="display-1 accent--text">#featured</h1>
+    <h1 class="display-1 accent--text">#Featured</h1>
 
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
-        <v-container>
-          <Card />
-        </v-container>
-      </v-flex>
-    </v-layout>
+    <v-row no-gutters>
+      <v-col cols="6" sm="6" md="3" lg="3" class="pa-1" v-for="n in 4" :key="n">
+        <Card />
+      </v-col>
+    </v-row>
     <v-divider></v-divider>
-
     <br />
-    <br />
-    <br />&nbsp;
     <v-parallax height="300" dark src="parallax/store.jpg">
       <v-row align="center" justify="center">
         <v-col class="text-center" cols="12">
@@ -42,57 +37,16 @@
       </v-row>
     </v-parallax>
     <br />
-    <div class="black--text text-center display-1 font-weight-medium">New Arrivals</div>
+    <h1 class="display-1 accent--text text-right">#New Arrivals</h1>
 
-    <br />
-    <br />
-    <br />
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
-        <v-container>
-          <Card />
-        </v-container>
-      </v-flex>
-    </v-layout>
+    <v-row no-gutters>
+      <v-col cols="6" sm="6" md="3" lg="3" class="pa-1" v-for="n in 4" :key="n">
+        <Card />
+      </v-col>
+    </v-row>
     <v-divider></v-divider>
 
     <br />
-    <br />
-    <br />&nbsp;
-    <v-divider></v-divider>
-    <br />
-    <div class="black--text text-center display-1 font-weight-medium">Top Products</div>
-
-    <br />
-    <br />
-    <br />
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
-        <v-container>
-          <Card />
-        </v-container>
-      </v-flex>
-    </v-layout>
-    <v-divider></v-divider>
-    <br />
-    <br />
-    <br />&nbsp;
-    <v-divider></v-divider>
-    <br />
-    <div class="black--text text-center display-1 font-weight-medium">Best offers</div>
-
-    <br />
-    <br />
-    <br />
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md3 v-for="n in 4" :key="n">
-        <v-container>
-          <Card />
-        </v-container>
-      </v-flex>
-    </v-layout>
-    <v-divider></v-divider>
-    <pre></pre>
   </v-app>
 </template>
 

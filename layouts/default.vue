@@ -34,23 +34,23 @@
 
                     <v-card width="600px" height="300px">
                       <v-row class="mx-2">
-                        <v-col cols="4" v-for="subcategory in category.children" :key="subcategory">
+                        <v-col cols="4" v-for="children in category.children" :key="children">
                           <v-row>
                             <v-list flat dense height="30px" rounded>
                               <v-list-item
-                                :to="{ name: 'categories-slug', params: { slug: subcategory.slug} }"
+                                :to="{ name: 'categories-slug', params: { slug: children.slug} }"
                               >
-                                <v-list-item-title class="primary--text">{{subcategory.name}}</v-list-item-title>
+                                <v-list-item-title class="primary--text overline">{{children.name}}</v-list-item-title>
                               </v-list-item>
                             </v-list>
                           </v-row>
 
-                          <v-row v-for="product in subcategory.children" :key="product">
+                          <v-row v-for="subchildren in children.children" :key="subchildren">
                             <v-list flat dense height="30px" rounded>
                               <v-list-item
-                                :to="{ name: 'categories-slug', params: { slug: product.slug}}"
+                                :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
                               >
-                                <v-list-item-subtitle class="category-sub-child">{{product.name}}</v-list-item-subtitle>
+                                <v-list-item-subtitle class="overline">{{subchildren.name}}</v-list-item-subtitle>
                               </v-list-item>
                             </v-list>
                           </v-row>
@@ -82,7 +82,7 @@
             </v-btn>
 
             <!-- Account button -->
-            <div v-if="$auth.loggedIn" class="mr-2">
+            <div v-if="$auth.loggedIn" class="hidden-sm-and-down mr-2">
               <v-menu bottom offset-y>
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" dark v-on="on" icon>
@@ -112,53 +112,54 @@
       <v-list shaped>
         <v-list-item>
           <!-- <v-btn color="primary" dark>Login</v-btn> -->
-          <div v-if="$auth.loggedIn==false">
-            <Login />
+          <div>
+            <Login v-if="$auth.loggedIn==false" />
+            <v-list-item-title v-if="$auth.loggedIn==true">Welcome, {{user.name}}</v-list-item-title>
           </div>
         </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
 
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
+        <v-divider />
         <v-subheader>Categories</v-subheader>
       </v-list>
 
-      <template>
-        <v-list nav avatar shaped>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
+      <v-list avatar shaped>
+        <v-list-group v-for="item in categories.data" :key="item">
+          <template v-slot:activator>
+            <v-list-item-avatar>
+              <v-img src="/icon.png"></v-img>
+            </v-list-item-avatar>
+            <v-list-item-title>{{item.name}}</v-list-item-title>
+          </template>
 
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
-
-          <v-list-group v-for="item in categories.data" :key="item">
+          <v-list-group no-action sub-group v-for="children in item.children" :key="children">
             <template v-slot:activator>
-              <v-list-item-avatar>
-                <v-img src="/icon.png"></v-img>
-              </v-list-item-avatar>
-              <v-list-item-title>{{item.name}}</v-list-item-title>
+              <v-list-item-content>
+                <v-list-item-title>{{children.name}}</v-list-item-title>
+              </v-list-item-content>
             </template>
 
-            <v-list-group no-action sub-group v-for="children in item.children" :key="children">
-              <template v-slot:activator>
-                <v-list-item-content>
-                  <v-list-item-title>{{children.name}}</v-list-item-title>
-                </v-list-item-content>
-              </template>
-
-              <v-list-item link v-for="subchildren in children.children" :key="subchildren">
-                <v-list-item-title>{{subchildren.name}}</v-list-item-title>
-                <v-list-item-icon>
-                  <v-icon></v-icon>
-                </v-list-item-icon>
-              </v-list-item>
-            </v-list-group>
+            <v-list-item link v-for="subchildren in children.children" :key="subchildren">
+              <v-list-item-title>{{subchildren.name}}</v-list-item-title>
+              <v-list-item-icon>
+                <v-icon></v-icon>
+              </v-list-item-icon>
+            </v-list-item>
           </v-list-group>
-
-          <v-list-item>
-            <v-switch v-model="$vuetify.theme.dark" color="primary" label="Dark"></v-switch>
-          </v-list-item>
-        </v-list>
-      </template>
+        </v-list-group>
+        <v-divider />
+        <div v-if="$auth.loggedIn==true">
+          <ProfileList />
+        </div>
+        <v-list-item>
+          <v-switch v-model="$vuetify.theme.dark" color="primary" label="Dark"></v-switch>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
     <v-content>
       <v-container>
@@ -173,13 +174,14 @@
 import Login from "@/components/Login";
 import ProfileList from "@/components/profile/ProfileList";
 import Footer from "@/components/core/Footer";
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapActions, mapMutations, mapState } from "vuex";
 export default {
   components: {
     Login,
     ProfileList,
     Footer
   },
+
   data() {
     return {
       drawer: null,
@@ -192,14 +194,13 @@ export default {
   computed: {
     ...mapGetters({
       categories: "categories",
-       cartProducts: "cart/products",
-       cartCount: "cart/cartCount"
+      cartProducts: "cart/products",
+      cartCount: "cart/cartCount"
       // authenticated: "user/getAuthentication"
+    }),
+    ...mapState({
+      user: state => state.auth.user
     })
-    //...mapState({
-
-    //  categories: state => state.layout.categories
-    //})
   },
 
   methods: {
