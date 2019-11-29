@@ -6,7 +6,7 @@
 
     <v-chip-group v-model="selection" @change="changed($event, type)">
       <v-chip
-        v-for="variation in variations"
+        v-for="variation in productVariation"
         :key="variation.id"
         :value="variation.id"
         :disabled="!variation.in_stock "
@@ -19,9 +19,12 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    selection: ""
-  }),
+  data() {
+    return {
+      selection: null,
+      productVariation: this.variations
+    };
+  },
   props: {
     type: {
       required: true,

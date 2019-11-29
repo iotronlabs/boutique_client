@@ -1,5 +1,5 @@
 <template>
-  <v-container class="px-0 py-0">
+  <v-container>
     <!-- toolbar -->
 
     <v-row no-gutters>
@@ -30,9 +30,9 @@
       </template>
     </v-row>
 
-    <v-row>
+    <v-row class="mt-n1">
       <!-- filters -->
-      <v-col md="2" lg="2" class="hidden-sm-and-down">
+      <v-col md="3" lg="3" class="hidden-sm-and-down">
         <v-card class="fill-height" shaped>
           <v-list flat>
             <v-subheader>Filters</v-subheader>
@@ -48,7 +48,7 @@
       </v-col>
 
       <!-- products -->
-      <v-col cols="12" md="10" lg="10">
+      <v-col cols="12" md="9" lg="9">
         <v-data-iterator
           :items="products"
           :items-per-page.sync="itemsPerPage"
@@ -119,28 +119,6 @@
         </v-row>
       </v-container>
     </v-app-bar>
-    <!--   <v-app-bar fixed app bottom class="hidden-md-and-up">
-        <v-container class="px-0 py-0">
-          <v-row no-gutters>
-            <v-col>
-              <v-menu class="text-center">
-                <template v-slot:activator="{ on }">
-                  <v-btn color="primary" dark v-on="on" block>Filter</v-btn>
-                </template>
-
-                <v-list>
-                  <v-list-item v-for="(item, index) in filters" :key="index">
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-            </v-col>
-            <v-col>
-              
-            </v-col>
-          </v-row>
-        </v-container>
-    </v-app-bar>-->
   </v-container>
 </template>
 
@@ -153,7 +131,7 @@ import Product from "@/components/products/Product";
 export default {
   data() {
     return {
-      category: this.$route.params.category,
+      category: this.$route.params.category, // doesn't work, check this
       products: [],
       title: "",
       itemsPerPageArray: [3, 6, 9, 12, 15, 18],

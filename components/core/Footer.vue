@@ -6,17 +6,9 @@
       <v-row no-gutters>
         <v-col>
           <v-img src="/butiq.png" height="40" width="90" contain></v-img>
-          <base-btn
-            v-for="(item, i) in items"
-            :key="i"
-            :href="item.href"
-            class="ml-0 mr-3"
-            color="primary"
-            square
-            target="_blank"
-          >
+          <v-btn v-for="(item, i) in items" :key="i" :href="item.href" icon text target="_blank">
             <v-icon v-text="item.icon" />
-          </base-btn>
+          </v-btn>
         </v-col>
 
         <v-col>
@@ -43,9 +35,9 @@
       <v-row col wrap>
         <v-flex 6 xs9 sm md4 lg4></v-flex>
         <v-spacer />
-        <base-btn class="mr-0" square title="Go to top" @click="$vuetify.goTo(0)">
+        <v-btn class="mr-0" square title="Go to top" @click="$vuetify.goTo(0)">
           <v-icon>mdi-chevron-up</v-icon>
-        </base-btn>
+        </v-btn>
       </v-row>
     </v-container>
   </v-footer>

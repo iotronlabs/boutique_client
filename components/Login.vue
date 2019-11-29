@@ -44,7 +44,7 @@
                     autocomplete="off"
                     @click:append="show = !show"
                   ></v-text-field>
-					{{ message }}
+                  {{ message }}
                   <div class="d-flex justify-center">
                     <v-btn color="primary" rounded outlined type="submit" class="mt-4">LogIn</v-btn>
                   </div>
@@ -96,53 +96,50 @@ export default {
   },
   data() {
     return {
-		dialog: false,
-		email: "",
-		password: "",
-		show: false,
-		rules: {
-			required: v => !!v || "Required.",
-			min: v => v.length >= 8 || "Min 8 characters",
-			emailValid: v => /.+@.+/.test(v) || "E-mail must be valid"
-		},
-		checkbox: false,
-		logins: ["Sign In", "Sign Up"],
-		message: ''
-		}
-	},
-	methods: {
-		registerSuccess() {
-			this.dialog=false
-		},
-		async login() {
-			await this.$auth.loginWith('local', {
-				data: {
-					"email": this.email,
-					"password": this.password
-				}
-			})
-			this.checkLogin()
-		},
-		async loginWithFacebook() {
-			await this.$auth.loginWith('facebook')
-			this.checkLogin()
-		},
-		async loginWithGoogle() {
-			await this.$auth.loginWith('google')
-			this.checkLogin()
-		},
-		checkLogin() {
-			console.log(this.$auth.user)
-			if(this.$auth.loggedIn)
-			{
-				this.dialog=false
-			}
-			else
-			{
-				this.message = "Invalid email or password"
-			}
-		}
-	}
+      dialog: false,
+      email: "",
+      password: "",
+      show: false,
+      rules: {
+        required: v => !!v || "Required.",
+        min: v => v.length >= 8 || "Min 8 characters",
+        emailValid: v => /.+@.+/.test(v) || "E-mail must be valid"
+      },
+      checkbox: false,
+      logins: ["Sign In", "Sign Up"],
+      message: ""
+    };
+  },
+  methods: {
+    registerSuccess() {
+      this.dialog = false;
+    },
+    async login() {
+      await this.$auth.loginWith("local", {
+        data: {
+          email: this.email,
+          password: this.password
+        }
+      });
+      this.checkLogin();
+    },
+    async loginWithFacebook() {
+      window.location.href = `https://api.butiq.co.in/public/api/login/facebook`;
+      this.checkLogin();
+    },
+    async loginWithGoogle() {
+      window.location.href = `https://api.butiq.co.in/public/api/login/google`;
+      this.checkLogin();
+    },
+    checkLogin() {
+      console.log(this.$auth.user);
+      if (this.$auth.loggedIn) {
+        this.dialog = false;
+      } else {
+        this.message = "Invalid email or password";
+      }
+    }
+  }
 };
 </script>
 

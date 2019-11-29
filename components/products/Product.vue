@@ -1,6 +1,6 @@
 <template>
-  <v-card :to="link" :loading="loading" class="mx-auto" shaped>
-    <v-img height="250px" src="/women.jpg">
+  <v-card :to="link" class="mx-auto" shaped>
+    <v-img height="240px" src="https://bulma.io/images/placeholders/320x480.png">
       <v-btn icon color="primary" large>
         <v-icon>mdi-bookmark</v-icon>
       </v-btn>

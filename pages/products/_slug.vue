@@ -35,7 +35,7 @@
           <p>{{product.description}}</p>
           <v-row no-gutters class="hidden-sm-and-down">
             <v-col>
-              <v-btn block class="mr-1" color="primary" @click.prevent="addToCart(product)">
+              <v-btn block class="mr-1" color="primary" @click.prevent="add">
                 Add To Cart
                 <v-icon right>mdi-cart</v-icon>
               </v-btn>
@@ -56,7 +56,7 @@
             <v-container class="px-0 py-0">
               <v-row no-gutters>
                 <v-col>
-                  <v-btn block class="mr-1" color="primary" @click.prevent="addToCart(product)">
+                  <v-btn block class="mr-1" color="primary" @click.prevent="add">
                     Add To Cart
                     <v-icon right>mdi-cart</v-icon>
                   </v-btn>
@@ -122,6 +122,19 @@ export default {
       }
       console.log(this.form.type);
       console.log(this.form.id);
+    },
+    store: "cart/store",
+    add() {
+      this.store([
+        {
+          id: this.form.variation.id,
+          quantity: this.form.quantity
+        }
+      ]);
+      this.form = {
+        variation: "",
+        quantity: 1
+      };
     }
   }
 };

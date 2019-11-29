@@ -1,9 +1,18 @@
 <template>
   <v-container>
-    Your Cart
     <v-card>
-      <CartOverview />
-      <v-btn block color="primary">CheckOut</v-btn>
+      <h1 class="body-1 ml-2 pt-1">Your Cart</h1>
+
+      <h5 class="ml-2 mb-0 body-2" v-if="changed">Some products stocks may have changed</h5>
+      <div v-if="cartProducts.length">
+        <CartOverview />
+      </div>
+      <div class="headline text-center accent--text" v-else>
+        Alas, Your Cart is empty.
+        <v-img src="icons/cart.svg" width="128" class="mx-auto my-4" />
+      </div>
+
+      <v-btn block color="primary" :disabled="empty" :to="{ name:'checkout'}">CheckOut</v-btn>
     </v-card>
   </v-container>
 </template>
@@ -23,7 +32,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      cartProducts: "cart/products"
+      cartProducts: "cart/products",
+      empty: "cart/empty",
+      changed: "cart/changed"
     })
   }
 };

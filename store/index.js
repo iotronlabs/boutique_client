@@ -21,7 +21,7 @@ export const actions = {
 	}) {
 		let response = await this.$axios.$get('/categories')
 
-		commit('SET_CATEGORIES', response)
+		commit('SET_CATEGORIES', response.data)
 
 		if (this.$auth.loggedIn) {
 			await dispatch('cart/getCart')

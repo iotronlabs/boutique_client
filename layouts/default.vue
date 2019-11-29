@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app style="background-color: transparent">
+      <v-app-bar-nav-icon class="hidden-md-and-up" color="primary" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <!-- <v-toolbar-side-icon  /> -->
 
       <v-container fluid px-0>
@@ -13,13 +13,13 @@
             <!-- nav categories -->
             <v-col class="hidden-sm-and-down">
               <v-col class="d-flex align-center">
-                <v-col v-for="category in categories.data" :key="category.slug">
+                <v-col v-for="category in categories" :key="category.id">
                   <v-menu
                     open-on-hover
                     :close-on-content-click="false"
                     class="hidden-sm-and-down"
                     bottom
-                    offset-y="5"
+                    offset-y
                   >
                     <template v-slot:activator="{ on }">
                       <!--slug in name:'category-slug' is taking the value of slug defined in "params: { slug: category.slug, name: category}" -->
@@ -28,24 +28,30 @@
                         text
                         rounded
                         v-on="on"
-                        color="accent"
+                        color="primary"
                       >{{category.name}}</v-btn>
                     </template>
 
                     <v-card width="600px" height="300px">
                       <v-row class="mx-2">
-                        <v-col cols="4" v-for="children in category.children" :key="children">
+                        <v-col
+                          cols="4"
+                          v-for="subcategory in category.children"
+                          :key="subcategory.id"
+                        >
                           <v-row>
                             <v-list flat dense height="30px" rounded>
                               <v-list-item
-                                :to="{ name: 'categories-slug', params: { slug: children.slug} }"
+                                :to="{ name: 'categories-slug', params: { slug: subcategory.slug} }"
                               >
-                                <v-list-item-title class="primary--text overline">{{children.name}}</v-list-item-title>
+                                <v-list-item-title
+                                  class="primary--text overline"
+                                >{{subcategory.name}}</v-list-item-title>
                               </v-list-item>
                             </v-list>
                           </v-row>
 
-                          <v-row v-for="subchildren in children.children" :key="subchildren">
+                          <v-row v-for="subchildren in subcategory.children" :key="subchildren.id">
                             <v-list flat dense height="30px" rounded>
                               <v-list-item
                                 :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
@@ -68,8 +74,10 @@
               <v-text-field
                 append-icon="mdi-magnify"
                 label="Customise your Style"
+                color="primary"
                 hide-details
-                outlined
+                filled
+                style="background-color: white"
                 rounded
                 dense
               />
@@ -129,22 +137,32 @@
       </v-list>
 
       <v-list avatar shaped>
-        <v-list-group v-for="item in categories.data" :key="item">
+        <v-list-group v-for="category in categories" :key="category.id">
           <template v-slot:activator>
             <v-list-item-avatar>
               <v-img src="/icon.png"></v-img>
             </v-list-item-avatar>
-            <v-list-item-title>{{item.name}}</v-list-item-title>
+            <v-list-item-title>{{category.name}}</v-list-item-title>
           </template>
 
-          <v-list-group no-action sub-group v-for="children in item.children" :key="children">
+          <v-list-group
+            no-action
+            sub-group
+            v-for="subcategory in category.children"
+            :key="subcategory.id"
+          >
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>{{children.name}}</v-list-item-title>
+                <v-list-item-title>{{subcategory.name}}</v-list-item-title>
               </v-list-item-content>
             </template>
 
-            <v-list-item link v-for="subchildren in children.children" :key="subchildren">
+            <v-list-item
+              link
+              v-for="subchildren in subcategory.children"
+              :key="subchildren.id"
+              :to="{ name: 'categories-slug', params: { slug: subchildren.slug}}"
+            >
               <v-list-item-title>{{subchildren.name}}</v-list-item-title>
               <v-list-item-icon>
                 <v-icon></v-icon>
@@ -162,9 +180,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
     <Footer />
   </v-app>
@@ -184,7 +200,7 @@ export default {
 
   data() {
     return {
-      drawer: null,
+      drawer: false,
       avatar: "/butiq.png"
     };
   },
