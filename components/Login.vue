@@ -22,7 +22,7 @@
                   />
 
                   <v-text-field
-                    prepend-icon="email"
+                    prepend-icon="mdi-email"
                     label="Email ID"
                     placeholder=" "
                     name="email"
@@ -33,9 +33,9 @@
                   ></v-text-field>
                   <v-text-field
                     id="password"
-                    prepend-icon="lock"
+                    prepend-icon="mdi-lock"
                     v-model="password"
-                    :append-icon="show ? 'visibility' : 'visibility_off'"
+                    :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="show ? 'text' : 'password'"
                     label="Password"
                     name="password"

@@ -5,7 +5,7 @@
       <div class="px-4 py-1">
         <v-form id="sign-up-form" ref="sign-up-form" method="post" @submit.prevent="getOtp">
           <v-text-field
-            prepend-inner-icon="email"
+            prepend-inner-icon="mdi-email"
             placeholder="Enter your email"
             name="email"
             type="email"
@@ -26,9 +26,8 @@
         {{ message }}
         <v-form id="form-two" method="post" @submit.prevent="validateOtp">
           <v-text-field
-            prepend-inner-icon
             label
-            placeholder=" "
+            placeholder="Your OTP"
             type="text"
             v-model="otp"
             autocomplete="off"
@@ -47,7 +46,7 @@
       <div color class="px-4 py-1">
         <v-form id="form-three" ref="form-three" method="post" @submit.prevent="register">
           <v-text-field
-            prepend-inner-icon="person"
+            prepend-inner-icon="mdi-person"
             label="Name"
             placeholder="Name "
             name="name"
@@ -61,9 +60,9 @@
 
           <v-text-field
             id="password"
-            prepend-inner-icon="lock"
+            prepend-inner-icon="mdi-lock"
             v-model="password"
-            :append-icon="show ? 'visibility' : 'visibility_off'"
+            :append-icon="show ? 'mdi-visibility' : 'mdi-visibility_off'"
             :type="show ? 'text' : 'password'"
             label="Password"
             name="password"
@@ -77,9 +76,9 @@
           ></v-text-field>
           <v-text-field
             id="cnfpassword"
-            prepend-inner-icon="lock"
+            prepend-inner-icon="mdi-lock"
             v-model="confirm_password"
-            :append-icon="show ? 'visibility' : 'visibility_off'"
+            :append-icon="show ? 'mdi-visibility' : 'mdi-visibility_off'"
             :type="show ? 'text' : 'password'"
             label="Confirm Password"
             name="password"

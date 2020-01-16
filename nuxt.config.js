@@ -6,11 +6,13 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: process.env.npm_package_name +
+    titleTemplate:
+      process.env.npm_package_name +
       " - " +
       process.env.npm_package_description,
     title: process.env.npm_package_name || "",
-    meta: [{
+    meta: [
+      {
         charset: "utf-8"
       },
       {
@@ -23,14 +25,11 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{
+    link: [
+      {
         rel: "icon",
         type: "image/x-icon",
         href: "/icon.png"
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
       }
     ]
   },
@@ -47,9 +46,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-
-  ],
+  plugins: [],
   /*
    ** Nuxt.js modules
    */
@@ -57,14 +54,15 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
-    "@nuxtjs/auth"
+    "@nuxtjs/auth",
+    "nuxt-webfontloader"
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "https://api.butiq.co.in/public/api",
+    baseURL: "https://api.butiq.co.in/api",
     // baseURL: 'http://localhost:8000',
     proxyHeaders: false,
     credentials: false,
@@ -103,18 +101,18 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: '/auth/login',
-            method: 'post',
-            propertyName: 'meta.token'
+            url: "/auth/login",
+            method: "post",
+            propertyName: "meta.token"
           },
           user: {
-            url: '/auth/me',
-            method: 'get',
-            propertyName: 'data'
+            url: "/auth/me",
+            method: "get",
+            propertyName: "data"
           },
           logout: {
-            url: '/auth/logout',
-            method: 'get'
+            url: "/auth/logout",
+            method: "get"
           }
         },
         tokenRequired: true,
@@ -126,13 +124,14 @@ export default {
         scope: ["public_profile", "email", "user_birthday"]
       },
       google: {
-        client_id: "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
+        client_id:
+          "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
       },
-      'laravel.passport': {
-        url: '/auth/login',
-        client_id: '1',
-        client_secret: 'qncrYUzAv4Qdtj6A0Z6yiYVLRj88yZztq13PRUy5'
-      },
+      "laravel.passport": {
+        url: "/auth/login",
+        client_id: "1",
+        client_secret: "qncrYUzAv4Qdtj6A0Z6yiYVLRj88yZztq13PRUy5"
+      }
     }
   },
 
@@ -141,8 +140,18 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   buildModules: ["@nuxtjs/vuetify"],
-
+  webfontloader: {
+    google: {
+      families: ["Poppins:300,400,500,600&display=swap"] //Loads Lato font with weights 400 and 700
+    }
+  },
   vuetify: {
+    customVariables: ["~/assets/variables.scss"],
+    defaultAssets: {
+      font: false,
+      icons: "mdi"
+    },
+    treeShake: true,
     theme: {
       light: true,
       themes: {
