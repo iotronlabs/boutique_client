@@ -6,13 +6,11 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate:
-      process.env.npm_package_name +
+    titleTemplate: process.env.npm_package_name +
       " - " +
       process.env.npm_package_description,
     title: process.env.npm_package_name || "",
-    meta: [
-      {
+    meta: [{
         charset: "utf-8"
       },
       {
@@ -25,13 +23,11 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/icon.png"
-      }
-    ]
+    link: [{
+      rel: "icon",
+      type: "image/x-icon",
+      href: "/icon.png"
+    }]
   },
   /*
    ** Customize the progress-bar color
@@ -121,11 +117,10 @@ export default {
       facebook: {
         client_id: "2442813762714926",
         // userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
-        scope: ["public_profile", "email", "user_birthday"]
+
       },
       google: {
-        client_id:
-          "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
+        client_id: "971122924020-j0754ojm02r59dt421ig97l6682mhr69.apps.googleusercontent.com"
       },
       "laravel.passport": {
         url: "/auth/login",

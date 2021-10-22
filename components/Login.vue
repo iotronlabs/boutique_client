@@ -124,11 +124,11 @@ export default {
       this.checkLogin();
     },
     async loginWithFacebook() {
-      window.location.href = `https://api.butiq.co.in/public/api/login/facebook`;
+      window.location.href = `https://api.butiq.co.in/api/login/facebook`;
       this.checkLogin();
     },
     async loginWithGoogle() {
-      window.location.href = `https://api.butiq.co.in/public/api/login/google`;
+      window.location.href = `https://api.butiq.co.in/api/login/google`;
       this.checkLogin();
     },
     checkLogin() {
